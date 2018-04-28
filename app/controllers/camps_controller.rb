@@ -1,5 +1,5 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors, :students]
   before_action :check_login
   authorize_resource
   def index
@@ -9,6 +9,9 @@ class CampsController < ApplicationController
 
   def show
     @instructors = @camp.instructors.alphabetical
+    if current_user.role?(:parent)
+      @students = Family.where(user_id:current_user.id).first.students
+    end
   end
 
   def edit
@@ -43,6 +46,12 @@ class CampsController < ApplicationController
 
   def instructors
     @instructors = Instructor.for_camp(@camp).alphabetical
+  end
+
+  def students
+    if current_user.role?(:parent)
+      @students = Family.where(user_id:current_user.id).first.students
+    end
   end
 
   private

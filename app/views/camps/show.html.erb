@@ -3,7 +3,11 @@
     <%= render :partial => "camp_details" %>
   </div>
   <div class="col s5">
-    <%= render :partial => "camp_instructors_vue"%>
+    <% if logged_in? && current_user.role?(:admin) %>
+      <%= render :partial => "camp_instructors_vue"%>
+    <% elsif logged_in? && current_user.role?(:parent) %>
+      <%= render :partial => "camp_instructors_p_vue"%>
+    <% end %>
     <%# render :partial => "camp_students"%>
   </div>
 </div>
@@ -12,4 +16,3 @@
     <%= render :partial => "partials/object_options", locals: {model_name: "camp", object: @camp} %>
   </div>
 </div>
-

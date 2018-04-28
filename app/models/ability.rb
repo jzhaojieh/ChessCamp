@@ -25,18 +25,18 @@ class Ability
             
         elsif user.role? :parent
             # 4 and 5 
-            can :show, Camp
-            can :show, Curriculum
+            # can :read, Camp
+            # can :read, Curriculum
+            can :manage, :all
             
-            can :manage, Student do |s|  
-                s.id == student.id
-            end
+            # can :manage, Student do |s|  
+            #     s.id == student.id
+            # end
             
-            can :create, Registration 
-            can :show, Order
+            # can :create, Registration 
         else
-            can :read, Camp
-            can :read, Curriculum
+            can :index, Camp
+            can :index, Curriculum
             can :create, Family
             can :create, User
         end

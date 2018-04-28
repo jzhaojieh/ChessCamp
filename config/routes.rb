@@ -33,19 +33,19 @@ Rails.application.routes.draw do
 
   get 'students/destroy'
 
-  get 'registrations/index'
+  # get 'registrations/index'
 
-  get 'registrations/show'
+  # get 'registrations/show'
 
-  get 'registrations/edit'
+  # get 'registrations/edit'
 
-  get 'registrations/new'
+  # get 'registrations/new'
 
-  get 'registrations/create'
+  # get 'registrations/create'
 
-  get 'registrations/update'
+  # get 'registrations/update'
 
-  get 'registrations/destroy'
+  # get 'registrations/destroy'
 
   get 'families/index'
 
@@ -76,6 +76,8 @@ Rails.application.routes.draw do
   resources :locations
   resources :curriculums
   resources :sessions
+  # resources :registrations
+  resources :students
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
@@ -84,6 +86,10 @@ Rails.application.routes.draw do
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
 
+  # Routes for managing registrations
+  get 'camps/:id/students', to: 'camps#students', as: :registrations
+  post 'camps/:id/students', to: 'registrations#create', as: :create_registration
+  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_registration
 end
 
 

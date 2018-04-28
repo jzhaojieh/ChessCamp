@@ -21,6 +21,7 @@
 
   <div v-if="modal_open">
     <new-instructor-form></new-instructor-form>
+    <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
   </div>
 
 
