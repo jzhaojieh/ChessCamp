@@ -39,6 +39,7 @@ class Ability
                 s.id == student.id
             end
             can :manage, Student 
+            #CANNOT MANAGE CAMP
             can :manage, Camp 
             # can :manage, :all
             can :manage, Registration do |s|
@@ -47,8 +48,10 @@ class Ability
         else
             can :read, Camp
             can :read, Curriculum
+            can :read, Location
             can :index, Camp
             can :index, Curriculum
+            can :index, Location
             can :create, Family
             can :create, User
         end
