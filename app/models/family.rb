@@ -25,6 +25,10 @@ class Family < ApplicationRecord
   end
 
   before_update :handle_family_being_made_inactive
+  
+  def name 
+    self.parent_first_name + ',' + self.family_name
+  end
 
   private
   def handle_family_being_made_inactive

@@ -26,6 +26,15 @@ class User < ApplicationRecord
   def self.authenticate(username, password)
     find_by_username(username).try(:authenticate, password)
   end
+
+  # remember to write test 
+  def name
+    if self.role == 'parent'
+      Family.where(user_id:self.id).first.name
+    else
+      Instructor.where(user_id:self.id).first.name
+    end
+  end
     
   private
   def reformat_phone

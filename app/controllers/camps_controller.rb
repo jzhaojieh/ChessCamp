@@ -50,7 +50,7 @@ class CampsController < ApplicationController
 
   def students
     if current_user.role?(:parent)
-      @students = Family.where(user_id:current_user.id).first.students
+      @students = Family.where(user_id: current_user.id).first.students.where(id: Camp.second.students.ids)
     end
   end
 
