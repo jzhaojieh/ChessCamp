@@ -1,7 +1,8 @@
+require 'byebug'
 class RegistrationsController < ApplicationController
-  before_action :set_registration, only: [:show, :edit, :update, :destroy]
+  # before_action :set_registration, only: [:show, :edit, :update, :destroy]
   before_action :check_login
-  authorize_resource
+  # authorize_resource
   
   def index
   end
@@ -39,22 +40,17 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    # @registration = Registration.find(params[:id])
-    camp_id = params[:camp_id]
+    camp_id = params[:id]
     student_id = params[:student_id]
     @registration = Registration.where(camp_id: camp_id, student_id: student_id).first
-    asldkjf
     unless @registration.nil?
       @registration.destroy 
       flash[:notice] = "Successfully removed this registration."
+      redirect_to camp_path(@registration.camp)
     end
   end
 
   private
-    def set_registration
-      @registration = Registration.find(params[:id])
-    end
-
     def registration_params
       params.require(:registration).permit(:camp_id, :student_id, :payment)
     end
