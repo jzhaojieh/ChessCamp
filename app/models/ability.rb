@@ -29,16 +29,16 @@ class Ability
             # can :read, Curriculum
             can :manage, :all
             
-            # can :manage, Student do |s|  
-            #     s.id == student.id
-            # end
+            can :manage, Student do |s|  
+                s.id == student.id
+            end
             
-            # can :create, Registration 
+            can :manage, Registration 
         else
-            can :index, Camp
-            can :index, Curriculum
+            can :read, Camp
+            can :read, Curriculum
             can :create, Family
-            can :create, User
+            can :manage, User
         end
     end
 end

@@ -12,7 +12,7 @@
   </head>
 
   <body>
-
+  
     <% if logged_in? && ( current_user.role?(:admin) ) %>
       <%= render :partial => "partials/nav" %>
     <% elsif logged_in? && current_user.role?(:instructor) %>
