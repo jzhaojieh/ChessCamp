@@ -23,8 +23,9 @@ class RegistrationsController < ApplicationController
       flash[:notice] = "Successfully registered #{@registration.student.proper_name} for #{@registration.camp.name}."
       redirect_to camp_path(@registration.camp)
     else
-      @camp = Camp.find(params[:camp_id])
-      render action: 'new'
+      flash[:notice] = "Failed to Register. Check ratings are within range"
+      redirect_to camp_path(@registration.camp)
+      # render action: 'new', locals: { camp: @camp }
     end
   end 
 
@@ -42,6 +43,7 @@ class RegistrationsController < ApplicationController
     camp_id = params[:camp_id]
     student_id = params[:student_id]
     @registration = Registration.where(camp_id: camp_id, student_id: student_id).first
+    asldkjf
     unless @registration.nil?
       @registration.destroy 
       flash[:notice] = "Successfully removed this registration."

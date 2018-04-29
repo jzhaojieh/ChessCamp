@@ -1,6 +1,7 @@
 class CurriculumsController < ApplicationController
   before_action :set_curriculum, only: [:show, :edit, :update, :destroy]
   before_action :check_login
+  skip_before_action :check_login, only: [:index, :show] 
   authorize_resource
   def index
     @curriculums = Curriculum.all

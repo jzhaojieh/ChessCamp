@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :check_login
-  # skip_before_action :check_login, only: [:new, :create] 
+  before_action :check_login
+  skip_before_action :check_login, only: [:new, :create] 
   authorize_resource
   def index
     @users = User.all.paginate(page: params[:page]).per_page(15)

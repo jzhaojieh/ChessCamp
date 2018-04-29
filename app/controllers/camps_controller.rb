@@ -1,6 +1,7 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors, :students]
   before_action :check_login
+  skip_before_action :check_login, only: [:index, :show] 
   authorize_resource
   def index
     @active_camps = Camp.all.active.alphabetical.paginate(:page => params[:active_camps]).per_page(10)
@@ -9,7 +10,7 @@ class CampsController < ApplicationController
 
   def show
     @instructors = @camp.instructors.alphabetical
-    if current_user.role?(:parent)
+    if logged_in? && current_user.role?(:parent)
       @students = Family.where(user_id:current_user.id).first.students
     end
   end
@@ -50,7 +51,7 @@ class CampsController < ApplicationController
 
   def students
     if current_user.role?(:parent)
-      @students = Family.where(user_id: current_user.id).first.students.where(id: Camp.second.students.ids)
+      @students = Camp.where(id: @camp.id).first.students
     end
   end
 

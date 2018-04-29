@@ -47,6 +47,8 @@ class Ability
         else
             can :read, Camp
             can :read, Curriculum
+            can :index, Camp
+            can :index, Curriculum
             can :create, Family
             can :create, User
         end

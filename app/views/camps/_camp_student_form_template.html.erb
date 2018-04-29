@@ -10,7 +10,7 @@
         <%= f.error_notification %>
         <div class="row">
           <div class="form-inputs">
-            <%= f.input :student_id, collection: @students.where.not(id: Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten), include_blank: true %>
+            <%= f.input :student_id, collection: Family.where(user_id: current_user.id).first.students.where.not(id: Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten), include_blank: true %>
             <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
           </div>
         </div>
