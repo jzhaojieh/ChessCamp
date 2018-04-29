@@ -47,19 +47,19 @@ Rails.application.routes.draw do
 
   # get 'registrations/destroy'
 
-  get 'families/index'
+  # get 'families/index'
 
-  get 'families/show'
+  # get 'families/show'
 
-  get 'families/edit'
+  # get 'families/edit'
 
-  get 'families/new'
+  # get 'families/new'
 
-  get 'families/create'
+  # get 'families/create'
 
-  get 'families/update'
+  # get 'families/update'
 
-  get 'families/destroy'
+  # get 'families/destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Semi-static page routes
@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   resources :curriculums
   resources :sessions
   resources :users
+  resources :families
   # resources :registrations
   resources :students
   get 'user/edit' => 'users#edit', :as => :edit_current_user

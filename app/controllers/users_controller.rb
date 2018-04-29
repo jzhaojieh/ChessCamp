@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user.role = "instructor" if current_user.role?(:instructor)
   end
 
   def new

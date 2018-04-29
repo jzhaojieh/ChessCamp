@@ -26,7 +26,7 @@ class FamiliesController < ApplicationController
     if !@user.save
       @family.valid?
       render action: 'new'
-    else
+    end
     @family.user_id = @user.id
     if @family.save
       redirect_to family_path(@family), notice: "#{@family.family_name} was added to the system."

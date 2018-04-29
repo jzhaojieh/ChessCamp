@@ -1,1 +1,15 @@
-<p>Parents</p>
+<div id="tabbed">
+  <tabs>
+    <tab name="active students" v-bind:selected="true">
+      <%= render :partial => "students_list", locals: {students: @active_students, state: 'active'} %>
+    </tab>
+    <tab name="inactive students">
+      <%= render :partial => "students_list", locals: {students: @inactive_students, state: 'inactive'} %>
+    </tab>
+  </tabs>
+</div>
+
+<p>&nbsp;</p>
+<%= render :partial => "partials/add_new_object", locals: {model_name: 'student'} %>
+
+
