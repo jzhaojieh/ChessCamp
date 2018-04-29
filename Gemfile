@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Get rid of github warning
 gem 'loofah', '2.2.1'
 gem 'vuejs-rails', '2.5.13'
+gem 'best_in_place', '~> 3.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

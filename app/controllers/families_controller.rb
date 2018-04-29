@@ -21,18 +21,22 @@ class FamiliesController < ApplicationController
 
   def create
     @family = Family.new(family_params)
-    @user = User.new(user_params)
-    @user.role = 'parent'
-    if !@user.save
-      @family.valid?
-      render action: 'new'
-    end
-    @family.user_id = @user.id
+    # @user = User.new(user_params)
+    # if logged_in? && current_user.role?(:parent)
+    # @user.role = 'parent'
+    # alsdjf
+    # if !@user.save
+    #   @family.valid?
+    #   render action: 'new'
+    # else
+    @family.user_id = current_user.id
+    # dsfasdf
     if @family.save
       redirect_to family_path(@family), notice: "#{@family.family_name} was added to the system."
     else
       render action: 'new'
     end
+    # end
   end
 
   def update
@@ -58,6 +62,6 @@ class FamiliesController < ApplicationController
     end
 
     def user_params
-      params.require(:owner).permit(:first_name, :last_name, :active, :username, :password, :password_confirmation)
+      params.require(:family).permit(:email, :role, :active, :username, :password, :password_confirmation)
     end
 end

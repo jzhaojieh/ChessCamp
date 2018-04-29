@@ -10,7 +10,7 @@ class CampsController < ApplicationController
 
   def show
     @instructors = @camp.instructors.alphabetical
-    if logged_in? && current_user.role?(:parent)
+    if logged_in? && current_user.role?(:parent) && (Family.where(user_id:current_user.id).empty? == false)
       @students = Family.where(user_id:current_user.id).first.students
     end
   end

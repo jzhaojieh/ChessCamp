@@ -63,12 +63,20 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Semi-static page routes
+  # Routes for managing camp instructors
+  get 'camps/:id/instructors', to: 'camps#instructors', as: :camp_instructors
+  post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
+  delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
+
+
   get 'home', to: 'home#index', as: :home
   get 'home/about', to: 'home#about', as: :about
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
   get 'home/search', to: 'home#search', as: :search
   root 'home#index'
+
+  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_registration
 
   # Routes for main resources
   resources :camps
@@ -85,15 +93,11 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
 
-  # Routes for managing camp instructors
-  get 'camps/:id/instructors', to: 'camps#instructors', as: :camp_instructors
-  post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
-  delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
+
 
   # Routes for managing registrations
   get 'camps/:id/students', to: 'camps#students', as: :registrations
   post 'camps/:id/students', to: 'registrations#create', as: :create_registration
-  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_registration
 end
 
 

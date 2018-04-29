@@ -1,2 +1,3 @@
-<h1>Families#new</h1>
-<p>Find me in app/views/families/new.html.erb</p>
+<%= render partial: "partials/form_structure", locals: {object: @family, 
+                                                        type_of_form: "New Family",
+                                                        fields: "family_fields",} %>

@@ -46,7 +46,9 @@ Vue.component('instructor-row', {
 
   methods: {
     remove_record: function(instructor){
-      run_ajax('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
+      var a = '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json');
+      console.log(a);
+      run_ajax('DELETE', {instructor: instructor}, a);
     }
   }
 });

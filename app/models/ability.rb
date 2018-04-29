@@ -44,7 +44,8 @@ class Ability
             end
 
             can :manage, Registration do |s|
-                s.payment == nil
+                mys = Family.where(user_id:user.id).first.students.ids
+                s.payment == nil && mys.include?(s.student.id)
             end
 
             can :manage, Family do |f|
@@ -55,6 +56,7 @@ class Ability
             can :read, Camp
             can :read, Curriculum
             can :read, Location
+            can :read, Instructor
             can :index, Camp
             can :index, Curriculum
             can :index, Location
