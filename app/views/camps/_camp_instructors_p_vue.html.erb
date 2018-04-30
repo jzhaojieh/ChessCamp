@@ -13,7 +13,7 @@
         </ul>
       <% end %>
       <div class="card-action">
-      <% if logged_in? && (Family.where(user_id:current_user.id).empty? == false && (can? :new, Registration))%>
+      <% if logged_in? && (can? :new, Registration)%>
         <%= link_to "Add a new registration", "#", {%s(v-on:click) => "switch_modal()"} %>
       <% end %>
       </div>

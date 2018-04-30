@@ -1,5 +1,5 @@
 class CampInstructorsController < ApplicationController
-  
+  authorize_resource
   def new
     @camp_instructor   = CampInstructor.new
     @camp              = Camp.find(params[:camp_id])
@@ -26,7 +26,6 @@ class CampInstructorsController < ApplicationController
     unless @camp_instructor.nil?
       @camp_instructor.destroy
       flash[:notice] = "Successfully removed this instructor."
-      redirect_to camp_path(@camp_instructor.camp)
     end
   end
 

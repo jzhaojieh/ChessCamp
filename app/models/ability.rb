@@ -5,6 +5,7 @@ class Ability
         
         if user.role? :admin
             can :manage, :all
+            can :manage, Registration
         
         elsif user.role? :instructor
             can :read, Curriculum
@@ -53,16 +54,15 @@ class Ability
             end
 
         else
-            can :manage, :all
-            # can :read, Curriculum
-            # can :read, Location
-            # can :manage, Instructor
-            # can :manage, Student
-            # can :index, Camp
-            # can :index, Curriculum
-            # can :index, Location
-            # can :create, Family
-            # can :create, User
+            can :read, Camp
+            can :read, Curriculum
+            can :read, Location
+            can :read, Instructor
+            can :index, Camp
+            can :index, Curriculum
+            can :index, Location
+            can :create, Family
+            can :create, User
         end
     end
 end

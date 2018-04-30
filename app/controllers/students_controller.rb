@@ -2,6 +2,7 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :check_login
   authorize_resource
+  # skip_before_action :check_login, only: [:index, :show] 
   def index
     if current_user.role?(:instructor)
       @students = current_user.camps.map {|a| a.students}.flatten.paginate(:page => params[:page]).per_page(12)
