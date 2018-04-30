@@ -8,6 +8,6 @@
   <%= render :partial => "locations_list", locals: {locations: @inactive_locations, state: "Inactive"} %>
 <% end %>
 
-<% if can? :create, Location %>
+<% if can? :new, Location %>
   <%= link_to 'New Location', new_location_path %>
 <% end %>

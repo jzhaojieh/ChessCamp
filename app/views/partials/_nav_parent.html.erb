@@ -5,7 +5,9 @@
     <ul class="right">
       <li><%= link_to "Curriculums", curriculums_path %></li>
       <li><%= link_to "Camps", camps_path %></li> 
+      <li><%= link_to 'Edit Profile', edit_family_path(Family.where(user_id:current_user.id).first) %></li>
       <li><%= link_to 'Logout', logout_path %></li>
+      
     </ul>
   </div>
 </nav>

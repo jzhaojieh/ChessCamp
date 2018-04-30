@@ -2,6 +2,7 @@ class FamiliesController < ApplicationController
   before_action :check_login
   authorize_resource
   before_action :set_family, only: [:show, :edit, :update, :destroy]
+  skip_before_action :check_login, only: [:new, :create] 
 
   def index
     if current_user.role?(:parent)
@@ -21,27 +22,25 @@ class FamiliesController < ApplicationController
 
   def create
     @family = Family.new(family_params)
-    # @user = User.new(user_params)
-    # if logged_in? && current_user.role?(:parent)
-    # @user.role = 'parent'
-    # alsdjf
-    # if !@user.save
-    #   @family.valid?
-    #   render action: 'new'
-    # else
-    @family.user_id = current_user.id
-    # dsfasdf
-    if @family.save
-      redirect_to family_path(@family), notice: "#{@family.family_name} was added to the system."
-    else
+    @user = User.new(user_params)
+    @user.role = 'parent'
+    if !@user.save
+      @family.valid?
       render action: 'new'
+    else
+      @family.user_id = @user.id
+      if @family.save
+        redirect_to login_path, notice: "Account created. Login with the appropriate information"
+      else
+        render action: 'new'
+      end
     end
-    # end
   end
+
 
   def update
     if @family.update(family_params)
-      redirect_to family_path(@family), notice: "#{@family.family_name} was revised in the system."
+      redirect_to home_path, notice: "#{@family.family_name} was revised in the system."
     else
       render action: 'edit'
     end
@@ -58,10 +57,10 @@ class FamiliesController < ApplicationController
     end
 
     def family_params
-      params.require(:family).permit(:family_name, :parent_first_name, :user_id, :active)
+      params.require(:family).permit(:family_name, :parent_first_name, :phone, :user_id, :email, :active, :username, :password, :password_confirmation)
     end
 
     def user_params
-      params.require(:family).permit(:email, :role, :active, :username, :password, :password_confirmation)
+      params.require(:family).permit(:email, :active, :username, :password, :phone, :password_confirmation)
     end
 end

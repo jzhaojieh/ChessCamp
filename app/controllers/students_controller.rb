@@ -20,18 +20,21 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
-    if @student.save
-      flash[:notice] = "Successfully added #{@student.proper_name} as a student."
-      redirect_to students_url
-    else
-      render action: 'new'
+    if logged_in? && current_user.role?(:parent)
+      @student.family_id = Family.where(user_id:current_user.id).first.id
+      if @student.save
+        flash[:notice] = "Successfully added #{@student.proper_name} as a student."
+        redirect_to home_path
+      else
+        render action: 'new'
+      end
     end
   end
 
   def update
     if @student.update_attributes(student_params)
       flash[:notice] = "Successfully updated #{@student.proper_name}."
-      redirect_to students_url
+      redirect_to student_path(@student)
     else
       render action: 'edit'
     end
@@ -39,7 +42,7 @@ class StudentsController < ApplicationController
 
   def destroy
     if @student.destroy
-      redirect_to students_url, notice: "Successfully removed #{@student.proper_name} from the Chess Camp system."
+      redirect_to home_path, notice: "Successfully removed #{@student.proper_name} from the Chess Camp system."
     else
       render action: 'show'
     end
@@ -51,6 +54,6 @@ class StudentsController < ApplicationController
     end
 
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :family_id, :date_of_birth, :rating, :active)
+      params.require(:student).permit(:first_name, :last_name, :date_of_birth, :rating, :active)
     end
 end

@@ -7,6 +7,8 @@ class Family < ApplicationRecord
   belongs_to :user
   has_many :students
   has_many :registrations, through: :students
+  attr_accessor :username, :password, :password_confirmation, :email, :phone
+  # (:family_name, :parent_first_name, :user_id, :active, :email, :role, :active, :username, :password, :password_confirmation)
 
   # scopes
   scope :alphabetical, -> { order('family_name') }

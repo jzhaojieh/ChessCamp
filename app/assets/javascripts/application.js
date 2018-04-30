@@ -15,9 +15,14 @@
 //= require materialize-sprockets
 //= require materialize-form
 //= require vue
+//= require best_in_place
 //= require_tree .
 
 // @import "materialize";
+// @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+// Sticky footer js
+// Thanks to Charles Smith for this -- http://foundation.zurb.com/forum/posts/629-sticky-footer
 $(window).bind("load", function () {
     var footer = $("#footer");
     var pos = footer.position();
@@ -31,20 +36,20 @@ $(window).bind("load", function () {
     }
   });
   
-// Flash fade
-$(function() {
-    $('.alert-box').fadeIn('normal', function() {
-    $(this).delay(3700).fadeOut();
-    });
-});
-
-// Carousel function
-$(document).ready(function(){
-$('.carousel').carousel();
-});
-
-// Best in place functionality
-$(document).ready(function() {
-jQuery(".best_in_place").best_in_place();
-});
+  // Flash fade
+  $(function() {
+     $('.alert-box').fadeIn('normal', function() {
+        $(this).delay(3700).fadeOut();
+     });
+  });
+  
+  // Carousel function
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+  
+  // Best in place functionality
+  $(document).ready(function() {
+    jQuery(".best_in_place").best_in_place();
+  });
   
