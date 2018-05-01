@@ -3,6 +3,7 @@ class FamiliesController < ApplicationController
   authorize_resource
   before_action :set_family, only: [:show, :edit, :update, :destroy]
   skip_before_action :check_login, only: [:new, :create] 
+  include ChessCampHelpers::Cart
 
   def index
     if current_user.role?(:parent)
@@ -30,6 +31,7 @@ class FamiliesController < ApplicationController
     else
       @family.user_id = @user.id
       if @family.save
+        create_cart
         redirect_to login_path, notice: "Account created. Login with the appropriate information"
       else
         render action: 'new'

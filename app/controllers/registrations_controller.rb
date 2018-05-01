@@ -1,6 +1,7 @@
 
 class RegistrationsController < ApplicationController
   # before_action :set_registration, only: [:show, :edit, :update, :destroy]
+  include ChessCampHelpers::Cart
   before_action :check_login
   authorize_resource
   
@@ -31,14 +32,14 @@ class RegistrationsController < ApplicationController
     end
   end 
 
-  # def update
-  #   if @registration.update_attributes(registration_params)
-  #     flash[:notice] = "Successfully updated #{@registration.student.proper_name}'s registration for #{@registration.camp.name}."
-  #     redirect_to registration_url
-  #   else
-  #     render action: 'edit'
-  #   end
-  # end
+  def update
+    if @registration.update_attributes(registration_params)
+      flash[:notice] = "Successfully updated #{@registration.student.proper_name}'s registration for #{@registration.camp.name}."
+      redirect_to registration_url
+    else
+      render action: 'edit'
+    end
+  end
 
   def destroy
     camp_id = params[:id]
