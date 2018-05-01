@@ -1,0 +1,42 @@
+<h4>Camps Without Registrations</h4>
+
+<% if camps.nil? || camps.empty? %>
+  <p>There are no struggling camps at this time.</p>
+<% else %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>Time Slot</th>
+      <th>Location</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% for camp in camps %>
+      <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+        <td><%= link_to camp.name, camp_path(camp) %></td>
+        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+        <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
+        <td><%= link_to camp.location.name, location_path(camp.location) %></td>
+
+      <td class="align_center">
+        <% if can? :edit, camp %>
+          <%= link_to edit_camp_path(camp) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+          <% end %>
+          <% if can? :destroy, camp %>
+            <%= link_to(camp_path(camp), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                <i class="material-icons">delete</i>
+            <% end %>
+          <% end %>
+      </td>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <%= will_paginate camps, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>
+

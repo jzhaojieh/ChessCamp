@@ -1,0 +1,10 @@
+<div id="tabbed">
+  <tabs>
+    <tab name="Upcoming Camps" v-bind:selected="true">
+      <%= render :partial => "instructor_camps_list", locals: {camps: @i_camps} %>
+    </tab>
+  </tabs>
+</div>
+
+<p>&nbsp;</p>
+<%= render :partial => "partials/add_new_object", locals: {model_name: 'student'} %>

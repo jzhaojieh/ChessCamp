@@ -1,3 +1,7 @@
+<ul id="dropdown1" class="dropdown-content">
+  <li><%= link_to "Login", login_path %></li>
+  <li><%= link_to "Signup", new_family_path %></li>
+</ul>
 <nav id="nav">
   <div class="container">
   <a href="/" class="brand-logo">A&M Chess Camp</a>
@@ -5,8 +9,9 @@
       <li><%= link_to "Curriculums", curriculums_path %></li>
       <li><%= link_to "Camps", camps_path %></li> 
       <li><%= link_to "Locations", locations_path %></li> 
-      <li><%= link_to 'Login', login_path %></li>
+      <li><%# link_to 'Login', login_path %></li>
       <li><%# link_to 'Sign Up', users_new_path %></li>
+      <li><a class="dropdown-button" href="/authors" data-activates="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>
 </nav>

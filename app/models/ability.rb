@@ -5,15 +5,19 @@ class Ability
         
         if user.role? :admin
             can :manage, :all
-            can :manage, Registration
+            # can :manage, Registration
         
         elsif user.role? :instructor
             can :read, Curriculum
             can :read, Location
             can :read, Camp
             
-            can :update, Instructor do |u|  
+            can :update, Instructor do |u|
                 u.id == Instructor.where(user_id:user.id).first.id
+            end
+
+            can :manage, User do |u|
+                u.id == user.id
             end
             
             can :read, Student do |s|
@@ -54,10 +58,14 @@ class Ability
             end
 
         else
+            can :manage, Camp
+            can :manage, Student
+            can :manage, Registration
             can :read, Camp
             can :read, Curriculum
             can :read, Location
             can :read, Instructor
+            can :read, Student
             can :index, Camp
             can :index, Curriculum
             can :index, Location

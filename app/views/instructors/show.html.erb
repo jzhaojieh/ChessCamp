@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col s5">
+    <% unless @instructor.photo_url.nil? %>
+      <p><%= image_tag @instructor.photo_url %></p>
+    <% end %>
     <%= render :partial => "instructor_details" %>
   </div>
   <div class="col s7">

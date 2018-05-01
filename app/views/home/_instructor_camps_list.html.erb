@@ -1,26 +1,29 @@
-<% if @upcoming_camps.empty? %>
-  <h3>There are no camps in the system that can be registered for.</h3>
+<% if @i_camps.empty? %>
+  <h3>You are not assigned to any camps.</h3>
 <% else %>
-  <h4>Upcoming Camps for Your Children</h4>
+  <h4>Upcoming Assignments</h4>
 
   <table class="striped highlight">
     <thead>
         <th>Name</th>
         <th>Start Date</th>
         <th>Time Slot</th>
-        <th>Remaining Slots</th>
+        <th>Location</th>
+        <th>Students</th>
     </thead>
-    <% for camp in @upcoming_camps %>
+    <% for camp in @i_camps %>
       <tr>
         <td><%= link_to camp.name, camp %></td>
         <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
         <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
-        <td><%= camp.max_students - camp.registrations.count %></td>
+        <td><%= link_to camp.location.name, camp.location  %></td>
+        <td><%= camp.registrations.count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <p class="supertiny"></p>
-<br /><%= will_paginate @upcoming_camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next"%>
+<br /><%= will_paginate @i_camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next"%>
 <p>&nbsp;</p>
 <% end %>
+

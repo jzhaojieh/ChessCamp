@@ -1,0 +1,40 @@
+<h4>Poor Locations</h4>
+
+<% if locations.nil? || locations.empty? %>
+  <p>There are no struggling locations at this time.</p>
+<% else %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+        <th>Address</th>
+        <th>Number of Camps w/o Registrations</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% for location in locations %>
+      <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+        <td><%= link_to location.name, location %></td>
+          <td><%= render :partial => "partials/address_info", locals: {location: location} %></td>
+          <td><%= @counts[location.id] %></td>
+
+      <td class="align_center">
+        <% if can? :edit, location %>
+          <%= link_to edit_location_path(location) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+          <% end %>
+          <% if can? :destroy, location %>
+            <%= link_to(location_path(location), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                <i class="material-icons">delete</i>
+            <% end %>
+          <% end %>
+      </td>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <%= will_paginate locations, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>
+

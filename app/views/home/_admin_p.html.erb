@@ -1,1 +1,15 @@
-<p>Admin</p>
+<h3> Pain points in the Chess Camp</h3>
+<div id="tabbed">
+  <tabs>
+    <tab name="Struggling Camps" v-bind:selected="true">
+      <%= render :partial => "camps_list", locals: {camps: @s_camps} %>
+    </tab>
+    <tab name="Poor Locations">
+      <%= render :partial => "locations_list", locals: {locations: @s_locations, counts: @counts} %>
+    </tab>
+  </tabs>
+</div>
+
+<p>&nbsp;</p>
+
+
