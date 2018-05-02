@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include AppHelpers::Cart
   def new
   end
 
@@ -7,6 +8,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       redirect_to home_path, notice: "Logged in!"
+      create_cart
     else
       flash.now.alert = "Username and/or password is invalid"
       render "new"
@@ -14,6 +16,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    destroy_cart
     session[:user_id] = nil
     redirect_to home_path, notice: "Logged out!"
   end

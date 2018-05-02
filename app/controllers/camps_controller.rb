@@ -54,6 +54,8 @@ class CampsController < ApplicationController
   def students
     if current_user.role?(:parent)
       @students = Camp.where(id: @camp.id).first.students
+    elsif current_user.role?(:admin)
+      @students = Camp.where(id: @camp.id).first.students
     end
   end
 

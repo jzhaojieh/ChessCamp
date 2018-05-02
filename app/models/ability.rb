@@ -10,7 +10,9 @@ class Ability
         elsif user.role? :instructor
             can :read, Curriculum
             can :read, Location
-            can :read, Camp
+            can :manage, Camp
+            cannot :update, Camp
+            cannot :destroy, Camp
             
             can :update, Instructor do |u|
                 u.id == Instructor.where(user_id:user.id).first.id
@@ -36,6 +38,11 @@ class Ability
             can :index, Camp
             #CANNOT MANAGE CAMP WTf
             can :manage, Camp 
+            cannot :update, Camp
+            cannot :destroy, Camp
+
+            can :add_item, Registration
+
             can :read, Curriculum
             can :index, Curriculum
             
@@ -59,14 +66,16 @@ class Ability
 
         else
             can :manage, Camp
+            cannot :update, Camp
+            cannot :destroy, Camp
             can :manage, Student
             can :manage, Registration
-            can :read, Camp
+            # can :read, Camp
             can :read, Curriculum
             can :read, Location
             can :read, Instructor
-            can :read, Student
-            can :index, Camp
+            # can :read, Student
+            # can :index, Camp
             can :index, Curriculum
             can :index, Location
             can :create, Family

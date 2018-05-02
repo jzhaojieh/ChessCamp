@@ -3,7 +3,7 @@ class FamiliesController < ApplicationController
   authorize_resource
   before_action :set_family, only: [:show, :edit, :update, :destroy]
   skip_before_action :check_login, only: [:new, :create] 
-  include ChessCampHelpers::Cart
+  include AppHelpers::Cart
 
   def index
     if current_user.role?(:parent)

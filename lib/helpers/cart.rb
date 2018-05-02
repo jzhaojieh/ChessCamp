@@ -1,3 +1,4 @@
+require 'byebug'
 module AppHelpers
   module Cart
     # For this application, our cart is simply an array consisting
@@ -20,8 +21,10 @@ module AppHelpers
     end
 
     def add_registration_to_cart(camp_id, student_id)
+      # byebug
       # only add the registration if not already in the cart
-      unless session[:cart].map{|ci| ci.ids}.include? [camp_id, student_id]
+      # unless session[:cart].map{|ci| ci.ids}.include? [camp_id, student_id]
+      unless session[:cart].map{|ci| ci["ids"]}.include? [camp_id, student_id]
         # if not, create a cart item for easy display later
         camp = Camp.find(camp_id)
         camp_name = camp.name
@@ -50,8 +53,10 @@ module AppHelpers
     end
 
     def get_array_of_ids_for_generating_registrations
+      # byebug
       unless session[:cart].nil? || session[:cart].empty?
-        reg_ids = session[:cart].map{|ci| ci.ids}
+        # reg_ids = session[:cart].map{|ci| ci.ids}
+        reg_ids = session[:cart].map{|ci| ci["ids"]}
       end
       return reg_ids
     end

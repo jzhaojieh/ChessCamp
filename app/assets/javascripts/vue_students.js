@@ -77,6 +77,7 @@ var new_form = Vue.component('new-student-form', {
         camp_id: this.camp_id,
         student_id: this.student_id
       }
+      // run_ajax('POST', {student: new_post}, '/camps/'.concat(this.camp_id, '/students/',this.student_id,'.json'))
       run_ajax('POST', {student: new_post}, '/registrations.json')
       this.switch_modal()
     }
