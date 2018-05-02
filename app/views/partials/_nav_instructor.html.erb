@@ -1,4 +1,5 @@
 <ul id="dropdown2" class="dropdown-content">
+  <li><%= link_to "View Profile", Instructor.where(user_id:current_user.id).first %></li>
   <li><%= link_to "Edit Profile", edit_instructor_path(Instructor.where(user_id:current_user.id).first) %></li>
   <li><%= link_to 'Logout', logout_path %></li>
 </ul>

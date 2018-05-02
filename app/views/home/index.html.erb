@@ -25,7 +25,7 @@
   <div class="col s6 center">
     <% if logged_in? && current_user.role?(:parent) %>
       <% if (Family.where(user_id: current_user.id).empty? == false) %>
-        <%= render :partial => "parent_scamps"%>
+        <%= render :partial => "p_camps_list", locals: {camps: @upcoming_camps, state: 'inactive'} %>
       <% end %>
     <% end %>
 

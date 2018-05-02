@@ -1,26 +1,9 @@
-<% if @upcoming_camps.empty? %>
-  <h3>There are no camps in the system that can be registered for.</h3>
-<% else %>
-  <h4>Upcoming Camps for Your Children</h4>
+<div id="tabbed">
+  <tabs>
+    <tab name="Recommended Upcoming Camps">
+      <%= render :partial => "p_camps_list", locals: {camps: @upcoming_camps, state: 'inactive'} %>
+    </tab>
+  </tabs>
+</div>
 
-  <table class="striped highlight">
-    <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Time Slot</th>
-        <th>Remaining Slots</th>
-    </thead>
-    <% for camp in @upcoming_camps %>
-      <tr>
-        <td><%= link_to camp.name, camp %></td>
-        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
-        <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
-        <td><%= camp.max_students - camp.registrations.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<p class="supertiny"></p>
-<br /><%= will_paginate @upcoming_camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next"%>
 <p>&nbsp;</p>
-<% end %>

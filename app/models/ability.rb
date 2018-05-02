@@ -14,6 +14,9 @@ class Ability
             cannot :update, Camp
             cannot :destroy, Camp
             
+            can :read, Instructor do |u|
+                u.id == Instructor.where(user_id:user.id).first.id
+            end
             can :update, Instructor do |u|
                 u.id == Instructor.where(user_id:user.id).first.id
             end

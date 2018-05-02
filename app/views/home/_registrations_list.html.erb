@@ -1,0 +1,25 @@
+<% if regs.nil? || regs.empty? %>
+    <h3>You are not registered for any camps.</h3>
+<% else %>
+    <h4>Upcoming Camps Registered</h4>
+  <table class="striped highlight">
+    <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Time Slot</th>
+        <th>Student</th>
+    </thead>
+    <% for reg in regs %>
+      <tr>
+        <td><%= link_to reg.camp.name, reg.camp %></td>
+        <td><%= reg.camp.start_date.strftime("%m/%d/%y") %></td>
+        <td><%= reg.camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
+        <td><%= link_to reg.student.name, reg.student%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p class="supertiny"></p>
+<br /><%= will_paginate regs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next"%>
+<p>&nbsp;</p>
+<% end %>
