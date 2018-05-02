@@ -1,0 +1,15 @@
+<%= simple_form_for(@r2) do |f| %>
+  <%= f.error_notification %>
+  <div class="row">
+    <div class="form-inputs">
+      <%= f.input :credit_card_number %><br />
+      <%= f.input :expiration_year %><br />
+      <%= f.input :expiration_month %><br />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-actions col s8">
+      <%= f.button :submit %>
+    </div>
+  </div>
+<% end %>

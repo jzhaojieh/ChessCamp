@@ -1,4 +1,3 @@
-require 'byebug'
 module AppHelpers
   module Cart
     # For this application, our cart is simply an array consisting
@@ -39,7 +38,7 @@ module AppHelpers
 
     def remove_registration_from_cart(camp_id, student_id)
       session[:cart].each do |ci|
-        session[:cart].delete(ci) if ci.ids == [camp_id, student_id]
+        session[:cart].delete(ci) if ci["ids"] == [camp_id, student_id]
       end
     end
 
@@ -47,7 +46,7 @@ module AppHelpers
       total = 0.0
       return total if session[:cart].empty? # skip if cart empty...
       session[:cart].each do |cart_item|
-        total += cart_item.cost
+        total += cart_item["cost"]
       end
       total
     end

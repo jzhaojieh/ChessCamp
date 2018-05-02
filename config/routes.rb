@@ -67,10 +67,11 @@ Rails.application.routes.draw do
   # Routes for managing registrations
   get 'camps/:id/students', to: 'camps#students', as: :registrations
   post 'camps/:id/students', to: 'registrations#add_item', as: :add_item
-  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_item
+  delete 'camps/:id/students/:student_id', to: 'registrations#remove_item', as: :remove_item
 
   get 'view_cart' => 'registrations#view_cart', as: :view_cart
-  get 'checkout_cart' => 'registrations#create', as: :checkout_cart
+  get 'checkout_cart' => 'registrations#checkout_cart', as: :checkout_cart
+
   
   get 'home', to: 'home#index', as: :home
   get 'home/about', to: 'home#about', as: :about

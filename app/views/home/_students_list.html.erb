@@ -13,7 +13,7 @@
     <% for student in students %>
       <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
         <td><%= link_to student.name, student_path(student) %></td>
-        <td><%= student.rating %></td>
+        <td><%= best_in_place student, :rating, as: :input %></td>
 
       <td class="align_center">
         <% if can? :edit, Student %>

@@ -9,7 +9,9 @@
     <ul class="right">
       <li><%= link_to "Curriculums", curriculums_path %></li>
       <li><%= link_to "Camps", camps_path %></li> 
-      <li><%= link_to 'View Cart', view_cart_url %></li>
+      <% if session[:cart].size > 0 %>
+        <li><%= link_to 'View Cart', view_cart_url %></li>
+      <% end %>
       <li><%# "#{User.where(id:current_user.id).first.username} : #{User.where(id:current_user.id).first.role}"%>
       <li><a class="dropdown-button" href="/authors" data-activates="dropdown3"><%="#{User.where(id:current_user.id).first.username}"%><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
