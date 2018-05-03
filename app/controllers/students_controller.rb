@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
   def index
     if current_user.role?(:instructor)
       @students = current_user.camps.map {|a| a.students}.flatten.paginate(:page => params[:page]).per_page(12)
+    elsif current_user.role?(:admin)
+      @students = Student.alphabetical.paginate(:page => params[:page]).per_page(12)
     end
   end
 

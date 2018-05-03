@@ -18,7 +18,8 @@
       <% if can? :read, Location %>
         <li><%= link_to "Locations", locations_path %></li>
       <% end %>
-      <li><%= link_to "Users", users_path %></li> 
+      <li><%= link_to "Students", students_path %></li> 
+      <li><%= link_to "Users", users_path %></li>
       <li><%# link_to 'Logout', logout_path %></li>
       <li><a class="dropdown-button" href="/authors" data-activates="dropdown4"><%="#{User.where(id:current_user.id).first.username}"%><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>

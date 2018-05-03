@@ -1,2 +1,4 @@
-<h1>Students#index</h1>
-<p>Find me in app/views/students/index.html.erb</p>
+<%= render partial: "partials/index_structure", locals: {model_name: "student", 
+                                                         primary: "active_students",
+                                                         secondary: nil,
+                                                         sidebar: nil} %>

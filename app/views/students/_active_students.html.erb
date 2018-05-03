@@ -1,0 +1,38 @@
+
+<% if @students.nil? || @students.empty? %>
+  <p>There are no students at this time.</p>
+<% else %>  
+  <%= render :partial => "partials/title_with_search", locals: {title: "Students"} %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Rating</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% for student in @students %>
+      <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+        <td><%= link_to student.name, student_path(student) %></td>
+        <td><%= best_in_place student, :rating, as: :input %></td>
+
+      <td class="align_center">
+        <% if can? :edit, Student %>
+          <%= link_to edit_student_path(student) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+          <% end %>
+          <% if can? :destroy, Student %>
+            <%= link_to(student_path(student), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                <i class="material-icons">delete</i>
+            <% end %>
+          <% end %>
+      </td>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <%= will_paginate @students, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>
+
