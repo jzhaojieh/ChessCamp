@@ -1,3 +1,11 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12 center">
+      <a href="#!" class="breadcrumb">View Shopping Cart</a>
+      <a href="#!" class="breadcrumb">Checkout</a>
+    </div>
+  </div>
+</nav>
 <%= form_tag checkout_cart_url, method: :get do %>
   <h4>Credit Card Number</h4>
   <%= text_field_tag :credit_card_number %><br />

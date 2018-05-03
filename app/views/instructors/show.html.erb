@@ -3,7 +3,7 @@
     <% unless @instructor.photo_url.nil? %>
       <p><%= image_tag @instructor.photo_url %></p>
     <% else %>
-      <p><%= image_tag ("/assets/images/default.jpg") %></p>
+      <p><%= image_tag "/assets/default.png" %></p>
     <% end %>
     <%= render :partial => "instructor_details" %>
   </div>

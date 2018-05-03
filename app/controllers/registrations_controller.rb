@@ -110,6 +110,8 @@ class RegistrationsController < ApplicationController
         @cart_regs.each do |c|
           reg = Registration.new(student_id:@cart_regs[0][1], camp_id:@cart_regs[0][0], credit_card_number:@ccnum, expiration_year:@eyear, expiration_month:@emonth)
           reg.pay
+          reg.save!
+          byebug
         end
       end
       @cart_subtotal = calculate_total_cart_registration_cost

@@ -3,7 +3,14 @@
   <% if @cart_regs.nil? || @cart_regs.empty? %>
     <h3>You have no registrations in your cart.</h3>
   <% else %>
-    <h4>Shopping Cart</h4>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="#!" class="breadcrumb">View Shopping Cart</a>
+        </div>
+      </div>
+    </nav>
+    <%# <h4>Shopping Cart</h4> %>
     <table class="striped highlight">
       <thead>
           <th>Camp</th>
