@@ -52,7 +52,6 @@ module AppHelpers
     end
 
     def get_array_of_ids_for_generating_registrations
-      # byebug
       unless session[:cart].nil? || session[:cart].empty?
         # reg_ids = session[:cart].map{|ci| ci.ids}
         reg_ids = session[:cart].map{|ci| ci["ids"]}

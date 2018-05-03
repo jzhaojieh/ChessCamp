@@ -33,11 +33,20 @@ class StudentsController < ApplicationController
   end
 
   def update
-    if @student.update_attributes(student_params)
-      flash[:notice] = "Successfully updated #{@student.proper_name}."
-      redirect_to student_path(@student)
-    else
-      render action: 'edit'
+    # if @student.update_attributes(student_params)
+    #   flash[:notice] = "Successfully updated #{@student.proper_name}."
+    #   redirect_to student_path(@student)
+    # else
+    #   render action: 'edit'
+    # end
+    respond_to do |format|
+      if @student.update_attributes(student_params)
+        format.html { redirect_to(@student, :notice => "Successfully updated #{@student.proper_name}.") }
+        format.json { respond_with_bip(@student) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@student) }
+      end
     end
   end
 

@@ -29,4 +29,10 @@ class HomeController < ApplicationController
   def privacy
   end
   
+  def search
+    @query = params[:query]
+    @curriculums = Curriculum.search(@query)
+    @instructors = Instructor.search(@query)
+    @total_hits = @curriculums.size + @instructors.size
+  end
 end

@@ -11,7 +11,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="col s6 center">
+  <div class="col s12 center">
     <% if logged_in? && current_user.role?(:parent) %>
       <% if (Family.where(user_id: current_user.id).empty? == false) %>
         <%= render :partial => "parent_p"%>
@@ -22,14 +22,4 @@
       <%= render :partial => "instructor_p"%>
     <% end %>
   </div>
-  <div class="col s6 center">
-    <% if logged_in? && current_user.role?(:parent) %>
-      <% if (Family.where(user_id: current_user.id).empty? == false) %>
-        <%= render :partial => "p_camps_list", locals: {camps: @upcoming_camps, state: 'inactive'} %>
-      <% end %>
-    <% end %>
-
-  </div>
 </div>
-
-

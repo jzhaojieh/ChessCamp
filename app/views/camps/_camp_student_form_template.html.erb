@@ -11,7 +11,7 @@
         <div class="row">
           <div class="form-inputs">
             <% if logged_in? && (Family.where(user_id:current_user.id).empty? == false)%>
-              <%= f.input :student_id, collection: Family.where(user_id: current_user.id).first.students.where.not(id: session[:cart].map{|r| r["ids"][1].to_i} | Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten), include_blank: true %>
+              <%= f.input :student_id, collection: Family.where(user_id: current_user.id).first.students.where.not(id:Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten), include_blank: true %>
             <% end %>
             <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
           </div>

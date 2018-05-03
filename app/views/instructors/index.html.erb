@@ -3,7 +3,7 @@
 <% if @instructors.empty? %>
   <h3>There are no instructors in the system at this time</h3>
 <% else %>
-  <h3>Instructors</h3>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Instructors"} %>
 
   <table>
   <thead>

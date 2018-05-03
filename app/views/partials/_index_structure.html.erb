@@ -14,10 +14,10 @@
   <div class="col s3 center">
     <!-- Add a button for new instances of object -->
     <% if can? :new, model_name %>
-      <%= link_to(eval("new_#{model_name}_path"), class: "btn waves-effect waves-light blue") do %>
-    <% end %>
+      <%= link_to(eval("new_#{model_name}_path"), :class=>"btn waves-effect waves-light blue") do %>
       <!-- <i class="fa fa-plus"></i> -->
       &nbsp;Add a New <%= model_name.capitalize %>
+    <% end %>
     <% end %>
   </div>
 </div>

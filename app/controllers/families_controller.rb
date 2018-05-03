@@ -12,6 +12,7 @@ class FamiliesController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -59,7 +60,11 @@ class FamiliesController < ApplicationController
     end
 
     def family_params
-      params.require(:family).permit(:family_name, :parent_first_name, :phone, :user_id, :email, :active, :username, :password, :password_confirmation)
+      if current_user.role?(:parent)
+        params.require(:family).permit(:phone, :email, :password, :password_confirmation)
+      else
+        params.require(:family).permit(:family_name, :parent_first_name, :phone, :user_id, :email, :active, :username, :password, :password_confirmation)
+      end
     end
 
     def user_params

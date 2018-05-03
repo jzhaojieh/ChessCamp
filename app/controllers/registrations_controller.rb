@@ -96,6 +96,7 @@ class RegistrationsController < ApplicationController
     if session[:cart].size > 0 
       @obs_regs = @cart_regs.map{|a| [Camp.where(id:a[0]), Student.where(id:a[1])]}
     end
+    @tot = calculate_total_cart_registration_cost
   end
   
   def checkout_cart

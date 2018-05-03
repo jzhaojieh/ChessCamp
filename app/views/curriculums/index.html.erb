@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
-
 <% if @curriculums.empty? %>
   <h3>There are no curriculums in the system at this time</h3>
 <% else %>
-  <h3>Curriculums</h3>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Curriculums"} %>
 
   <table>
   <thead>

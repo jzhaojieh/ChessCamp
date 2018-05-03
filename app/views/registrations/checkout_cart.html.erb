@@ -1,9 +1,9 @@
-<h4>Credit Card Number</h4>
 <%= form_tag checkout_cart_url, method: :get do %>
+  <h4>Credit Card Number</h4>
   <%= text_field_tag :credit_card_number %><br />
   <h4>Expiration Year</h4>
   <%= text_field_tag :expiration_year %><br />
   <h4>Expiration Month</h4>
   <%= text_field_tag :expiration_month %><br />
-  <%= submit_tag %>
+  <%= submit_tag "Checkout", :class => 'waves-effect waves-light btn'%>
 <% end %>

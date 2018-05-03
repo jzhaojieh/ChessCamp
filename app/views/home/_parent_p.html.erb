@@ -6,8 +6,11 @@
     <tab name="inactive students">
       <%= render :partial => "students_list", locals: {students: @inactive_students, state: 'inactive'} %>
     </tab>
-    <tab name="Upcoming Camps Registered">
+    <tab name="Upcoming Registered Camps">
       <%= render :partial => "registrations_list", locals: {regs: @reg_camps2, state: 'inactive'} %>
+    </tab>
+    <tab name="Upcoming Registered Camps">
+      <%= render :partial => "p_camps_list", locals: {camps: @upcoming_camps, state: 'inactive'} %>
     </tab>
   </tabs>
 </div>
