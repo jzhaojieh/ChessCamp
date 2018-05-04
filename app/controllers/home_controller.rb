@@ -6,7 +6,7 @@ class HomeController < ApplicationController
         @inactive_students = Family.where(user_id: current_user.id).first.students.alphabetical.inactive.paginate(:page => params[:page]).per_page(5)
         @upcoming_camps = Camp.upcoming.where.not(id: Camp.upcoming.full).where(curriculum_id: Family.where(user_id: current_user.id).first.students.map{|a| a.rating}.map {|r| Curriculum.for_rating(r)}.map{|d| d.ids}.flatten).chronological.paginate(:page => params[:page]).per_page(5)
         @reg_camps2 = Registration.where(id: Family.where(user_id: current_user.id).first.students.map {|a| a.registrations.ids}.flatten).alphabetical.paginate(:page => params[:page]).per_page(5)
-        
+        @student = Student.new
       end
     elsif logged_in? && current_user.role?(:admin)
       @s_camps = Camp.empty.chronological.paginate(:page => params[:page]).per_page(5)

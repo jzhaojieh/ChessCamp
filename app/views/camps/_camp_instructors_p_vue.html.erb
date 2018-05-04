@@ -13,8 +13,11 @@
         </ul>
       <% end %>
       <div class="card-action">
+      
       <% if logged_in? && current_user.role?(:parent)%>
-        <%= link_to "Add a new registration", "#", {%s(v-on:click) => "switch_modal()"} %>
+        <%if Student.where(id: Family.where(user_id: current_user.id).first.students.select{|a| a.rating >= Camp.where(id:@camp.id).first.curriculum.min_rating && a.rating <= Camp.where(id:@camp.id).first.curriculum.max_rating}.map{|a| a.id}).where.not(id:Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten).size > 0%>
+          <%= link_to "Add a new registration", "#", {%s(v-on:click) => "switch_modal()"} %>
+        <% end %>
       <% end %>
       </div>
     </div>

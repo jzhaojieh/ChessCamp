@@ -2,6 +2,7 @@
 //// Setting up a general ajax method to handle
 //// transfer of data between client and server
 ////////////////////////////////////////////////
+
 function run_ajax2(method, data, link, callback=function(res){instructors.get_instructors()}){
   $.ajax({
     method: method,
@@ -21,14 +22,24 @@ function run_ajax2(method, data, link, callback=function(res){instructors.get_in
 ///////////////////////////////////////////////////////
 //// A component to create a camp instructor list item
 ///////////////////////////////////////////////////////
+const router = new VueRouter({
+  routes: [
+    // dynamic segments start with a colon
+    { path: '/instructor/:id', component: instructors }
+  ]
+})
+
 Vue.component('instructor-row', {
 
+  // template: '#instructor-row-template',
   template: `
     <li>
+      <router-link to="/home">home</router-link>
       <a v-on:click="remove_record2(instructor)" class="remove">x&nbsp;&nbsp;</a>
       {{ instructor.last_name }},&nbsp;{{ instructor.first_name }}
     </li>
   `,
+
 
   props: {
     instructor: Object

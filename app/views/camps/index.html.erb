@@ -1,6 +1,27 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "camp", 
+<%# render partial: "partials/index_structure", locals: {model_name: "camp", 
                                                          primary: "active_camps", 
                                                          secondary: "inactive_camps",
                                                          sidebar: nil} %>
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a href="#test1">Active Camps</a></li>
+      <li class="tab col s3"><a href="#test2">Inactive</a></li>
+    </ul>
+  </div>
+    <div id="test1" class="col s12">
+      <%= render 'active_camps'%>
+    </div>
+    <div id="test2" class="col s12">
+      <%= render 'inactive_camps'%>
+    </div>
+    <% if can? :new, Camp %>
+      <%= link_to(eval("new_camp_path"), :class=>"btn waves-effect waves-light blue") do %>
+      <!-- <i class="fa fa-plus"></i> -->
+      &nbsp;Add a New <%= Camp %>
+      <% end %>
+    <% end %>
+  </div>
+      
 
 

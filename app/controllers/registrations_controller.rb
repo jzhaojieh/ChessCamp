@@ -104,14 +104,15 @@ class RegistrationsController < ApplicationController
     @ccnum = params[:credit_card_number].to_s
     @eyear = params[:expiration_year].to_i
     @emonth = params[:expiration_month].to_i
-    unless @ccnum.empty? && @eyear == 0 && @emonth == 0
+    card = CreditCard.new(@ccnum, @eyear, @emonth)
+    if card.valid?
       @cart_regs = get_array_of_ids_for_generating_registrations
       if session[:cart].size > 0 
         @cart_regs.each do |c|
           reg = Registration.new(student_id:@cart_regs[0][1], camp_id:@cart_regs[0][0], credit_card_number:@ccnum, expiration_year:@eyear, expiration_month:@emonth)
           reg.pay
           reg.save!
-          byebug
+          # byebug
         end
       end
       @cart_subtotal = calculate_total_cart_registration_cost
@@ -120,6 +121,7 @@ class RegistrationsController < ApplicationController
       redirect_to home_url
     else
       flash[:notice] = "Please enter appropriate credit card info to pay"
+      redirect_to view_cart_url
     end
   end
 

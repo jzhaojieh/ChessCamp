@@ -42,12 +42,28 @@
 <h5><%= "Subtotal: $#{@tot} "%></h5>
 </div>
 <div class="col s12 center">
-<% if session[:cart].size > 0  %> 
-  <div class="card-action">
-    <%= link_to "Proceed to Checkout", checkout_cart_url(), class: "btn" %>
-  </div>
-<% end %>
+<%# if session[:cart].size > 0  %> 
+  <%# <div class="card-action"> %>
+    <%# link_to "Proceed to Checkout", checkout_cart_url(), class: "btn" %>
+  <%# </div> %>
+<%# end %>
 </div>
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Checkout</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <%= form_tag checkout_cart_url, method: :get do %>
+        <h5>Credit Card Number</h5>
+        <%= text_field_tag :credit_card_number %><br />
+        <h5>Expiration Year</h5>
+        <%= text_field_tag :expiration_year %><br />
+        <h5>Expiration Month</h5>
+        <%= text_field_tag :expiration_month %><br />
+        <%= submit_tag "Checkout", :class => 'waves-effect waves-light btn'%>
+      <% end %>
+    </div>
+  </div>
 
 <p class="supertiny"></p>
 <br /><%# will_paginate @obs_regs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next"%>
