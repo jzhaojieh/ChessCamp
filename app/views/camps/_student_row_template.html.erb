@@ -1,0 +1,10 @@
+<li>
+    <% if logged_in? && current_user.role?(:admin)%>
+      <a v-on:click="remove_record(student)" class="remove">x&nbsp;&nbsp;</a>
+    <% end %>
+    <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:instructor))%>
+        <a v-on:click="show_record(student)">{{ student.last_name }},&nbsp;{{ student.first_name }}&nbsp;&nbsp;</a>
+    <% else %>
+        {{ student.last_name }},&nbsp;{{ student.first_name }}
+    <% end %>
+</li>

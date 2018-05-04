@@ -10,7 +10,9 @@
       <th>Name</th>
       <th>Ratings</th>
       <th>Times Used</th>
-      <th class="align_center">Options</th>
+      <% if can? :edit, Curriculum %>
+        <th class="align_center">Options</th>
+        <% end %>
     </tr>
   </thead>
 

@@ -31,14 +31,14 @@ const router = new VueRouter({
 
 Vue.component('instructor-row', {
 
-  // template: '#instructor-row-template',
-  template: `
-    <li>
-      <router-link to="/home">home</router-link>
-      <a v-on:click="remove_record2(instructor)" class="remove">x&nbsp;&nbsp;</a>
-      {{ instructor.last_name }},&nbsp;{{ instructor.first_name }}
-    </li>
-  `,
+  template: '#instructor-row-template',
+  // template: `
+  //   <li>
+  //     <router-link to="/home">home</router-link>
+  //     <a v-on:click="remove_record2(instructor)" class="remove">x&nbsp;&nbsp;</a>
+  //     {{ instructor.last_name }},&nbsp;{{ instructor.first_name }}
+  //   </li>
+  // `,
 
 
   props: {
@@ -58,7 +58,11 @@ Vue.component('instructor-row', {
   methods: {
     remove_record2: function(instructor){
       run_ajax2('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
-    }
+    },
+    show_record: function(instructor){
+      window.location.href = '/instructors/'.concat(instructor['id'])
+      // run_ajax2('GET', {}, ''.concat('/instructors/',instructor['id']));
+    },
   }
 });
 

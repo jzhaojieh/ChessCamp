@@ -22,13 +22,13 @@ function run_ajax(method, data, link, callback=function(res){students.get_studen
 //// A component to create a student list item
 ///////////////////////////////////////////////////////
 Vue.component('student-row', {
-
-  template: `
-    <li>
-      <a v-on:click="remove_record(student)" class="remove">x&nbsp;&nbsp;</a>
-      {{ student.last_name }},&nbsp;{{ student.first_name }}
-    </li>
-  `,
+  template: '#student-row-template',
+  // template: `
+  //   <li>
+  //     <a v-on:click="remove_record(student)" class="remove">x&nbsp;&nbsp;</a>
+  //     {{ student.last_name }},&nbsp;{{ student.first_name }}
+  //   </li>
+  // `,
 
   props: {
     student: Object
@@ -47,7 +47,11 @@ Vue.component('student-row', {
   methods: {
     remove_record: function(student){
       run_ajax('DELETE', {student: student}, '/camps/'.concat(this.camp_id, '/students/',student['id'],'.json'));
-    }
+    },
+    show_record: function(student){
+      window.location.href = '/students/'.concat(student['id'])
+      // run_ajax2('GET', {}, ''.concat('/instructors/',instructor['id']));
+    },
   }
 });
 

@@ -23,7 +23,9 @@
 
   <div v-if="modal_open">
     <new-instructor-form></new-instructor-form>
-    <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+    <%= link_to "#", {%s(v-on:click) => "switch_modal()"} do %>
+      <i class="waves-effect waves-light btn ">Cancel</i>
+    <% end %>
   </div>
 
 
@@ -36,4 +38,7 @@
       rather than in the js file (IMO) -->
 <script type="text/x-template" id="camp-instructor-form-template">
   <%= render "camp_instructor_form_template" %>
+</script>
+<script type="text/x-template" id="instructor-row-template">
+  <%= render "instructor_row_template" %>
 </script>

@@ -120,7 +120,7 @@ class RegistrationsController < ApplicationController
       clear_cart
       redirect_to home_url
     else
-      flash[:notice] = "Please enter appropriate credit card info to pay"
+      flash[:notice] = "Please enter valid credit card info to pay"
       redirect_to view_cart_url
     end
   end

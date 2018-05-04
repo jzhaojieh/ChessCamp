@@ -10,7 +10,9 @@
         <th>Name</th>
         <th>Address</th>
         <th>Max Capacity</th>
+        <% if can? :edit, Location %>
         <th class="align_center">Options</th>
+        <% end %>
       </tr>
     </thead>
 

@@ -19,7 +19,7 @@
         <% if can? :edit, Student %>
             <%= link_to edit_student_path(student) do %>
                 <%# <i class="material-icons">edit</i> %>
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal3">edit</a>
+                <i class="waves-effect waves-light btn modal-trigger" href="#modal3">edit</i>
             <% end %>
             &nbsp;&nbsp;&nbsp;&nbsp; 
         <% end %>
@@ -31,23 +31,26 @@
   <br />
   <%= will_paginate students, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
-<td class="align_center">
-<% if can? :new, Student %>
-  <%= link_to new_student_path() do %>
-      <%# <i class="material-icons">edit</i> %>
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal4">Add a Student</a>
-  <% end %>
-  &nbsp;&nbsp;&nbsp;&nbsp; 
-<% end %>
-</td>
 
   <!-- Modal Structure -->
 <div id="modal3" class="modal">
   <div class="modal-content">
-    <% unless student == nil%>
-    <%= render partial: "form_structure", locals: {object: student, 
-                                                      type_of_form: "Edit Student",
-                                                      fields: "fields"} %>
+    <%= simple_form_for(student) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          <%= f.input :first_name, label_html: { class: 'active' } %>
+          <%= f.input :last_name, label_html: { class: 'active' } %>
+          <%= f.input :date_of_birth, label_html: { class: 'active' } %>
+          <%= f.input :rating, label_html: { class: 'active' } %>
+          <%= f.input :active %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-actions col s8">
+          <%= f.button :submit %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

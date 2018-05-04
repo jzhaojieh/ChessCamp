@@ -2,16 +2,22 @@
   <div class="col s12">
     <ul class="tabs">
       <li class="tab col s3"><a href="#test1">Students</a></li>
-      <li class="tab col s3"><a href="#test2">Inactive Students</a></li>
       <li class="tab col s3"><a href="#test3">Registered Camps</a></li>
       <li class="tab col s3"><a href="#test4">Recommended Camps</a></li>
     </ul>
   </div>
     <div id="test1" class="col s12">
       <%= render :partial => "students_list", locals: {students: @active_students, state: 'active'} %>
-    </div>
-    <div id="test2" class="col s12">
-      <%= render :partial => "students_list", locals: {students: @inactive_students, state: 'inactive'} %>
+      <%# render :partial => "students_list", locals: {students: @inactive_students, state: 'inactive'} %>
+      <td class="align_center">
+      <% if can? :new, Student %>
+        <%= link_to new_student_path() do %>
+            <%# <i class="material-icons">edit</i> %>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal4">Add a Student</a>
+        <% end %>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+      <% end %>
+      </td>
     </div>
     <div id="test3" class="col s12">
       <%= render :partial => "registrations_list", locals: {regs: @reg_camps2, state: 'inactive'} %>

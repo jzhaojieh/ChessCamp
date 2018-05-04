@@ -11,7 +11,7 @@
         <div class="row">
           <div class="form-inputs">
             <% if logged_in? && (Family.where(user_id:current_user.id).empty? == false)%>
-              <%= f.input :student_id, collection: Student.where(id: Family.where(user_id: current_user.id).first.students.select{|a| a.rating >= Camp.where(id:@camp.id).first.curriculum.min_rating && a.rating <= Camp.where(id:@camp.id).first.curriculum.max_rating}.map{|a| a.id}).where.not(id:Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten), include_blank: true %>
+              <%= f.input :student_id, collection: Student.active.where(id: Family.where(user_id: current_user.id).first.students.select{|a| a.rating >= Camp.where(id:@camp.id).first.curriculum.min_rating && a.rating <= Camp.where(id:@camp.id).first.curriculum.max_rating}.map{|a| a.id}).where.not(id:Camp.where(id:@camp.id).map{|a| a.students.ids}.flatten), include_blank: true %>
             <% end %>
             <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
           </div>
@@ -24,5 +24,4 @@
       <% end %>
     </div>
   </div>
-
 </div>

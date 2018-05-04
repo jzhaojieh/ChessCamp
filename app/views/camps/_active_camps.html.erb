@@ -11,7 +11,9 @@
       <th>Time Slot</th>
       <th>Max Students</th>
       <th>Remaining Slots</th>
+      <% if can? :edit, Camp %>
       <th class="align_center">Options</th>
+      <% end %>
     </tr>
   </thead>
 

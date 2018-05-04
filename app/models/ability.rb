@@ -10,7 +10,7 @@ class Ability
         elsif user.role? :instructor
             can :read, Curriculum
             can :read, Location
-            can :manage, Camp
+            can :read, Camp
             can :students, Camp
             cannot :index, Instructor
             
@@ -39,7 +39,7 @@ class Ability
             
             can :read, Family do |s|
                 mys = Instructor.where(user_id:user.id).map{|a| a.camps}.flatten.map{|a| a.registrations}.flatten.map{|a| a.student.id}
-                (mys & s.students.ids).size > 0
+                (mys & s.students.ids).size != 0
             end
         elsif user.role? :parent
             # 4 and 5 
