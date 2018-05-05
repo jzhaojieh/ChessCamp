@@ -30,7 +30,10 @@ class HomeController < ApplicationController
       @campc = Camp.all.group(:curriculum_id).count
       @cregs = Hash.new
       @campc.each {|k,v| @cregs[Curriculum.where(id:k).first.name] = v}
-      # @famss = Family.where(id: @fams.map{|c| c.id}).paginate(:page => params[:page]).per_page(5)
+      @cinstrucs = CampInstructor.all.group(:instructor_id).count
+      @icnts = Hash.new 
+      @cinstrucs.each {|k,v| @icnts[Instructor.where(id:k).first.name] = v}
+      @icnts = @icnts.sort_by{|_key, value| value}.to_h
     elsif logged_in? && current_user.role?(:instructor)
       @i_camps = Instructor.where(user_id:current_user.id).first.camps.upcoming.chronological.paginate(:page => params[:page]).per_page(5)
     end

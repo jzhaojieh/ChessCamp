@@ -79,6 +79,7 @@ gem 'cancancan'
 
 gem "googlecharts"
 gem "chartkick"
+gem 'groupdate'
 
 # Materialize and UI gems
 gem 'materialize-sass', '0.100.2'

@@ -30,16 +30,19 @@
     <ul class="tabs">
       <li class="tab col s3"><a href="#test11">Monthly Revenue</a></li>
       <li class="tab col s3"><a href="#test12">Curriculum Distribution</a></li>
+      <li class="tab col s3"><a href="#test13">Instructor by Popularity</a></li>
     </ul>
   </div>
   <div id="test11" class="col s12">
-    <%# bar_chart @revs %>
-    <%= render :partial => "revenue_graph" %>
+    <%= column_chart @revs, colors: ["#74a9cf"] %>
   </div>
   <div id="test12" class="col s12">
     <h5> Registrations By Curriculum </h5>
-    <%= pie_chart @cregs %>
-    <%# render :partial => "curriculum_graph" %>
+    <%= pie_chart @cregs, colors: ["#0570b0","#74a9cf","#bdc9e1", "#f1eef6"] %>
+  </div>
+  <div id="test13" class="col s12">
+    <h5> Registrations By Curriculum </h5>
+    <%= bar_chart @icnts, colors: ["#74a9cf"]%>
   </div>
 </div>
 
