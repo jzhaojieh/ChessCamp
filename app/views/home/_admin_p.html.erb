@@ -1,22 +1,44 @@
 <h3> Pain points in the Chess Camp</h3>
-<div id="tabbed">
-  <tabs>
-    <tab name="Struggling Camps" v-bind:selected="true">
-      <%= render :partial => "camps_list", locals: {camps: @s_camps} %>
-      <%= render :partial => "camps_list2", locals: {camps: @r_camps} %>
-    </tab>
-    <tab name="Poor Locations">
-      <%= render :partial => "locations_list", locals: {locations: @s_locations, counts: @counts} %>
-    </tab>
-    <tab name="Best Customers">
-      <%= render :partial => "customers_list", locals: {customers: @fams, counts: @rcounts} %>
-    </tab>
-  </tabs>
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a href="#test7">Camps without Registrations</a></li>
+      <li class="tab col s3"><a href="#test10">Camps without Instructors</a></li>
+      <li class="tab col s3"><a href="#test8">Poor Locations</a></li>
+      <li class="tab col s3"><a href="#test9">Best Customers</a></li>
+    </ul>
+  </div>
+  <div id="test7" class="col s12">
+    <%= render :partial => "camps_list", locals: {camps: @s_camps} %>
+  </div>
+  <div id="test10" class="col s12">
+    <%= render :partial => "camps_list2", locals: {camps: @r_camps} %>
+  </div>
+  <div id="test8" class="col s12">
+    <%= render :partial => "locations_list", locals: {locations: @s_locations, counts: @counts} %>
+  </div>
+  <div id="test9" class="col s12">
+    <%= render :partial => "customers_list", locals: {customers: @fams, counts: @rcounts} %>
+  </div>
 </div>
+
+
 </br>
-<h4> Revenue by Month </h4>
-<%= render :partial => "revenue_graph" %>
+<h3> Health of Business </h3>
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a href="#test11">Monthly Revenue</a></li>
+      <li class="tab col s3"><a href="#test12">Yearly Regs</a></li>
+    </ul>
+  </div>
+  <div id="test11" class="col s12">
+    <%= render :partial => "revenue_graph" %>
+  </div>
+  <div id="test12" class="col s12">
+    <%= render :partial => "revenue_graph" %>
+  </div>
+</div>
 
 <p>&nbsp;</p>
-
 
