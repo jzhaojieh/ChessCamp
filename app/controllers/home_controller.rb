@@ -21,6 +21,12 @@ class HomeController < ApplicationController
       @regs.each {|b| @rcounts[b] = 0}
       @regs.each {|b| @rcounts[b] = @rcounts[b] + 1}
       @fams = @rcounts.sort_by{|k, v| v}.reverse.map {|a| Family.where(id:a[0]).first}
+      @rev_by_month = Camp.all.where(id:Registration.all.map{|a| a.camp.id}).group_by{|c| c.start_date.month}
+      @mrev = Hash.new
+      @rev_by_month.keys.each {|k| @mrev[k] = 0}
+      @rev_by_month.keys.each {|k| @mrev[k] = @rev_by_month[k].inject(0){|sum,x| sum + x.cost }}
+      @revs = []
+      @mrev.each{|k,v| @revs << [k, v]}
       # @famss = Family.where(id: @fams.map{|c| c.id}).paginate(:page => params[:page]).per_page(5)
     elsif logged_in? && current_user.role?(:instructor)
       @i_camps = Instructor.where(user_id:current_user.id).first.camps.upcoming.chronological.paginate(:page => params[:page]).per_page(5)
