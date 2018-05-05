@@ -29,14 +29,17 @@
   <div class="col s12">
     <ul class="tabs">
       <li class="tab col s3"><a href="#test11">Monthly Revenue</a></li>
-      <li class="tab col s3"><a href="#test12">Yearly Regs</a></li>
+      <li class="tab col s3"><a href="#test12">Curriculum Distribution</a></li>
     </ul>
   </div>
   <div id="test11" class="col s12">
+    <%# bar_chart @revs %>
     <%= render :partial => "revenue_graph" %>
   </div>
   <div id="test12" class="col s12">
-    <%= render :partial => "revenue_graph" %>
+    <h5> Registrations By Curriculum </h5>
+    <%= pie_chart @cregs %>
+    <%# render :partial => "curriculum_graph" %>
   </div>
 </div>
 

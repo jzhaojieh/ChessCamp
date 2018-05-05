@@ -27,6 +27,9 @@ class HomeController < ApplicationController
       @rev_by_month.keys.each {|k| @mrev[k] = @rev_by_month[k].inject(0){|sum,x| sum + x.cost }}
       @revs = []
       @mrev.each{|k,v| @revs << [k, v]}
+      @campc = Camp.all.group(:curriculum_id).count
+      @cregs = Hash.new
+      @campc.each {|k,v| @cregs[Curriculum.where(id:k).first.name] = v}
       # @famss = Family.where(id: @fams.map{|c| c.id}).paginate(:page => params[:page]).per_page(5)
     elsif logged_in? && current_user.role?(:instructor)
       @i_camps = Instructor.where(user_id:current_user.id).first.camps.upcoming.chronological.paginate(:page => params[:page]).per_page(5)

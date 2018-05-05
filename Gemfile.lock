@@ -69,6 +69,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (2.3.4)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -120,6 +121,7 @@ GEM
     gherkin (5.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    googlecharts (1.6.12)
     hirb (0.7.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -291,11 +293,13 @@ DEPENDENCIES
   cancancan
   capybara (~> 2.13)
   carrierwave
+  chartkick
   coffee-rails (~> 4.2)
   cucumber-rails (= 1.5.0)
   database_cleaner (= 1.6.2)
   factory_bot_rails (= 4.8.2)
   faker (= 1.8.7)
+  googlecharts
   hirb (= 0.7.3)
   jbuilder (~> 2.5)
   jquery-rails (= 4.3.1)
