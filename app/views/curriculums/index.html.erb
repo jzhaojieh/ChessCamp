@@ -4,7 +4,7 @@
 <% else %>
   <%= render :partial => "partials/title_with_search", locals: {title: "Curriculums"} %>
 
-  <table>
+  <table class="striped highlight">
   <thead>
     <tr>
       <th>Name</th>
@@ -37,7 +37,7 @@
 
     <% end %>
 <% if can? :new, Curriculum %>
-  <%= link_to(eval("new_curriculum_path"), :class=>"btn waves-effect waves-light blue") do %>
+  <%= link_to(eval("new_curriculum_path"), :class=>"btn waves-effect waves-light deep-purple lighten-2") do %>
   <!-- <i class="fa fa-plus"></i> -->
   &nbsp;Add a New <%= Curriculum %>
   <% end %>

@@ -5,7 +5,7 @@
 <% else %>
   <%= render :partial => "partials/title_with_search", locals: {title: "Instructors"} %>
 
-  <table>
+  <table class="striped highlight">
   <thead>
     <tr>
       <th>Name</th>
@@ -41,7 +41,7 @@
     <% end %>
 
 <% if can? :new, Instructor %>
-  <%= link_to(eval("new_instructor_path"), :class=>"btn waves-effect waves-light blue") do %>
+  <%= link_to(eval("new_instructor_path"), :class=>"btn waves-effect waves-light deep-purple lighten-2") do %>
   <!-- <i class="fa fa-plus"></i> -->
   &nbsp;Add a New <%= Instructor %>
   <% end %>
