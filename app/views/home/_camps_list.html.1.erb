@@ -10,7 +10,6 @@
       <th>Start Date</th>
       <th>Time Slot</th>
       <th>Location</th>
-      <th>Registrations</th>
       <th class="align_center">Options</th>
     </thead>
     <% for camp in camps %>
@@ -19,7 +18,7 @@
         <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
         <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
         <td><%= link_to camp.location.name, location_path(camp.location) %></td>
-        <td><%= camp.enrollment %></td>
+
       <td class="align_center">
         <% if can? :edit, camp %>
           <%= link_to edit_camp_path(camp) do %>

@@ -46,7 +46,7 @@ Vue.component('student-row', {
 
   methods: {
     remove_record: function(student){
-      run_ajax('DELETE', {student: student}, '/camps/'.concat(this.camp_id, '/students/',student['id'],'.json'));
+      run_ajax('DELETE', {student: student}, '/acamps/'.concat(this.camp_id, '/students/',student['id'],'.json'));
     },
     show_record: function(student){
       window.location.href = '/students/'.concat(student['id'])

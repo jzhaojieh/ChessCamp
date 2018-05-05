@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   get 'camps/:id/students', to: 'camps#students', as: :registrations
   post 'camps/:id/students', to: 'registrations#add_item', as: :add_item
   delete 'camps/:id/students/:student_id', to: 'registrations#remove_item', as: :remove_item
+  delete 'acamps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_registration
 
   get 'view_cart' => 'registrations#view_cart', as: :view_cart
   get 'checkout_cart' => 'registrations#checkout_cart', as: :checkout_cart

@@ -10,11 +10,18 @@ class HomeController < ApplicationController
       end
     elsif logged_in? && current_user.role?(:admin)
       @s_camps = Camp.empty.chronological.paginate(:page => params[:page]).per_page(5)
+      @r_camps = Camp.where.not(id:  CampInstructor.all.map{|a| a.camp.id}).chronological.paginate(:page => params[:page]).per_page(5)
       @s_locations = Location.where(id: Camp.empty.map{|a| a.location_id}).alphabetical.paginate(:page => params[:page]).per_page(5)
       @counts = Hash.new
       # maybe add to model method
       Camp.empty.map {|a| a.location.id}.each {|b| @counts[b] = 0}
       Camp.empty.map {|a| a.location.id}.each {|b| @counts[b] = @counts[b] + 1}
+      @regs = Registration.all.group(:student_id).map{|a| a.family.id}
+      @rcounts = Hash.new
+      @regs.each {|b| @rcounts[b] = 0}
+      @regs.each {|b| @rcounts[b] = @rcounts[b] + 1}
+      @fams = @rcounts.sort_by{|k, v| v}.reverse.map {|a| Family.where(id:a[0]).first}
+      # @famss = Family.where(id: @fams.map{|c| c.id}).paginate(:page => params[:page]).per_page(5)
     elsif logged_in? && current_user.role?(:instructor)
       @i_camps = Instructor.where(user_id:current_user.id).first.camps.upcoming.chronological.paginate(:page => params[:page]).per_page(5)
     end

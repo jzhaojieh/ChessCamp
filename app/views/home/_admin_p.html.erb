@@ -3,9 +3,13 @@
   <tabs>
     <tab name="Struggling Camps" v-bind:selected="true">
       <%= render :partial => "camps_list", locals: {camps: @s_camps} %>
+      <%= render :partial => "camps_list2", locals: {camps: @r_camps} %>
     </tab>
     <tab name="Poor Locations">
       <%= render :partial => "locations_list", locals: {locations: @s_locations, counts: @counts} %>
+    </tab>
+    <tab name="Best Customers">
+      <%= render :partial => "customers_list", locals: {customers: @fams, counts: @rcounts} %>
     </tab>
   </tabs>
 </div>

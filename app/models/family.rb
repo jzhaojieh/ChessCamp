@@ -20,7 +20,7 @@ class Family < ApplicationRecord
   delegate :email, to: :user, allow_nil: true
   delegate :phone, to: :user, allow_nil: true
   delegate :username, to: :user, allow_nil: true
-
+  delegate :role, to: :user
   # callbacks
   before_destroy do 
     cannot_destroy_object()

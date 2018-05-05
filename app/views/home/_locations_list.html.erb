@@ -16,18 +16,12 @@
         <td><%= link_to location.name, location %></td>
           <td><%= render :partial => "partials/address_info", locals: {location: location} %></td>
           <td><%= @counts[location.id] %></td>
-
       <td class="align_center">
         <% if can? :edit, location %>
           <%= link_to edit_location_path(location) do %>
                 <i class="material-icons">edit</i>
             <% end %>
             &nbsp;&nbsp;&nbsp;&nbsp; 
-          <% end %>
-          <% if can? :destroy, location %>
-            <%= link_to(location_path(location), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
-                <i class="material-icons">delete</i>
-            <% end %>
           <% end %>
       </td>
       </tr>

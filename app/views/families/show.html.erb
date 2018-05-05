@@ -14,17 +14,17 @@
         <b>Active?&nbsp;&nbsp;</b>
         <%= @family.active ? "Yes" : "No" %><br><br>
     </div>
-    <% if can? :edit, Family %>
+  </div>
+  <% if can? :edit, Family %>
       <%= link_to(edit_family_path(@family), class: 'waves-effect waves-light btn') do %>
-          &nbsp;<%= "Edit #{@family.first_name}" %>
+          &nbsp;<%= "Edit #{@family.parent_first_name}" %>
       <% end %>
       &nbsp;&nbsp;
     <% end %>
     
     <% if can?(:destroy, Family) && controller.respond_to?(:destroy) %>
-      <%= link_to(family_path(@family), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@family.first_name}"}, class: 'waves-effect waves-light btn btn-alert') do %>
-          &nbsp;<%= "Delete #{@family.first_name}" %>
+      <%= link_to(family_path(@family), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@family.parent_first_name}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+          &nbsp;<%= "Delete #{@family.parent_first_name}" %>
       <% end %>
     <% end %>
-  </div>
 </div>
