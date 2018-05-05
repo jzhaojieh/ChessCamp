@@ -1,2 +1,30 @@
-<h1>Families#show</h1>
-<p>Find me in app/views/families/show.html.erb</p>
+<div class="row">
+  <div class="col s8">
+    <div class="card indigo lighten-2">
+      <div class="card-content white-text">
+        <h5>Information about the <%= @family.family_name %> Family</h5><br />
+
+        <b>Parent's Name:&nbsp;&nbsp;</b>
+        <%= @family.parent_first_name %><br /><br />
+
+        <b>Students</b><br />
+        <% for student in @family.students.alphabetical%>
+            <%= link_to "#{student.proper_name}", student_path(student)%><br />
+        <% end %>
+        <b>Active?&nbsp;&nbsp;</b>
+        <%= @family.active ? "Yes" : "No" %><br><br>
+    </div>
+    <% if can? :edit, Family %>
+      <%= link_to(edit_family_path(@family), class: 'waves-effect waves-light btn') do %>
+          &nbsp;<%= "Edit #{@family.first_name}" %>
+      <% end %>
+      &nbsp;&nbsp;
+    <% end %>
+    
+    <% if can?(:destroy, Family) && controller.respond_to?(:destroy) %>
+      <%= link_to(family_path(@family), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@family.first_name}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+          &nbsp;<%= "Delete #{@family.first_name}" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

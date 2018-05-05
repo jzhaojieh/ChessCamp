@@ -61,7 +61,7 @@ class FamiliesController < ApplicationController
 
     def family_params
       if current_user.role?(:parent)
-        params.require(:family).permit(:phone, :email, :password, :password_confirmation)
+        params.require(:family).permit(:phone, :email, :password, :password_confirmation, :family_name, :parent_first_name)
       else
         params.require(:family).permit(:family_name, :parent_first_name, :phone, :user_id, :email, :active, :username, :password, :password_confirmation)
       end

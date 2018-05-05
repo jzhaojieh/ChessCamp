@@ -9,6 +9,7 @@
     <ul class="right">
       <li><%= link_to "Curriculums", curriculums_path %></li>
       <li><%= link_to "Camps", camps_path %></li> 
+      <li><%= link_to "Locations", locations_path %></li>
       <% if session[:cart].size > 0 %>
         <li><%= link_to 'View Cart', view_cart_url %></li>
       <% end %>
