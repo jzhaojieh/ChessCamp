@@ -34,3 +34,10 @@
   <%= will_paginate students, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
 
+<div id="modal3" class="modal">
+    <div class="modal-content">
+      <%= render partial: "partials/form_structure", locals: {object: student, 
+                                                        type_of_form: "Edit Student",
+                                                        fields: "fields"} %>
+    </div>
+  </div>

@@ -54,6 +54,14 @@ class Instructor < ApplicationRecord
     first_name + " " + last_name
   end
 
+  def self.dist 
+    cis = CampInstructor.all.group(:instructor_id).count
+    icounts = Hash.new 
+    cis.each {|k,v| icounts[Instructor.where(id:k).first.name] = v}
+    icounts = icounts.sort_by{|_key, value| value}.to_h
+    return icounts
+  end
+
   private
   def deactive_user_if_instructor_inactive
     if !self.active && !self.user.nil?

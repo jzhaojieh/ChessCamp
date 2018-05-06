@@ -3,7 +3,7 @@ body {
   background-color: #cfd8dc;
 }
 #dropdown1{
-  background-color: #e0e0e0;
+  background-color: #9575cd;
 }
 html {
   // Preloaded with four fonts; uncomment the one you prefer
@@ -13,13 +13,14 @@ html {
   // font-family: 'Varela Round', sans-serif;
 }
 a:link, a:visited {
-  color: #ffab91;
+  color: #f5f5f5;
   text-align: center; 
   text-decoration: none;
   display: inline-block;
   }
   
 a:hover { text-decoration: underline; }
+
 ul.tabs .tab{
   color: #9575cd;
   background-color: #cfd8dc;
@@ -54,6 +55,7 @@ ul.tabs .indicator {
 #nav {
   background-color: #7e57c2;
   height: 60px;
+
 }
 
 #nav ul a {
@@ -88,12 +90,12 @@ ul.tabs .indicator {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 0px;
-  color: #ef6c00;
+  color: white;
   line-height: 2rem;
 }
 
 #footer a {
-  color: #f57c00;
+  color: white;
 }
 /********** FORMS ********/
 .switch label input[type=checkbox]:checked + .lever {
@@ -107,15 +109,15 @@ ul.tabs .indicator {
 /********** Table ********/
 
 table.striped > tbody > tr:nth-child(odd) {
-  background-color: #9575cd;
-}
-
-table.striped > tbody > tr:nth-child(even) {
   background-color: #b39ddb;
 }
 
+table.striped > tbody > tr:nth-child(even) {
+  background-color: #9575cd;
+}
+
 table.highlight > tbody > tr:hover {
-  background-color: #673ab7;
+  background-color: #7e57c2;
 }
 
 td.align_right {

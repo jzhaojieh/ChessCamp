@@ -1,10 +1,15 @@
 <div class="row">
-  <div class="col s5">
+  <div class="col s7">
     <%= render :partial => "curriculum_details" %>
   </div>
-  <div class="col s7">
+  <div class="col s5">
     <%= render :partial => "partials/camps_list", locals: {camps: @past_camps_using, state: "Past"} unless @past_camps_using.empty? %>
+
     <%= render :partial => "partials/camps_list", locals: {camps: @upcoming_camps_using, state: "Upcoming"} %>
+    <%= will_paginate @upcoming_camps_using, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    <p>&nbsp;</p>
+    <%= will_paginate @past_camps_using, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    <p>&nbsp;</p>
   </div>
 </div>
 <div class="row">

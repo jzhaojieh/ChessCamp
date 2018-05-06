@@ -52,6 +52,31 @@ class Camp < ApplicationRecord
   def enrollment
     self.registrations.count
   end
+  
+  def self.empty_location
+    r = Hash.new
+    Camp.empty.map {|a| a.location.id}.each {|b| r[b] = 0}
+    Camp.empty.map {|a| a.location.id}.each {|b| r[b] = r[b] + 1}
+    return r
+  end
+
+  def self.curriculum_dist
+    all_camp = Camp.all.group(:curriculum_id).count
+    curr_regs = Hash.new
+    all_camp.each {|k,v| curr_regs[Curriculum.where(id:k).first.name] = v}
+    return curr_regs
+  end
+
+  def self.revenue
+    rm = Camp.all.where(id:Registration.all.map{|a| a.camp.id}).group_by{|c| c.start_date.month}
+    mrev = Hash.new
+    rm.keys.each {|k| mrev[k] = 0}
+    rm.keys.each {|k| mrev[k] = rm[k].inject(0){|sum,x| sum + x.cost }}
+    lst = []
+    mrev.each{|k,v| lst << [k, v]}
+    return lst
+  end
+
 
   # class methods
   def self.openings

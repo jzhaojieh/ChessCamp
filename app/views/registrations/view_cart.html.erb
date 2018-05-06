@@ -3,14 +3,7 @@
   <% if @cart_regs.nil? || @cart_regs.empty? %>
     <h3>You have no registrations in your cart.</h3>
   <% else %>
-    <nav>
-      <div class="nav-wrapper">
-        <div class="col s12">
-          <a href="#!" class="breadcrumb">View Shopping Cart</a>
-        </div>
-      </div>
-    </nav>
-    <%# <h4>Shopping Cart</h4> %>
+    <h4>Shopping Cart Items</h4>
     <table class="striped highlight">
       <thead>
           <th>Camp</th>
@@ -28,7 +21,7 @@
           <td><%= ob[0].first.start_date.strftime("%m/%d/%y") %></td>
           <td><%= ob[0].first.time_slot == "am" ? "Morning" : "Afternoon" %></td>
           <td><%= ob[0].first.max_students - ob[0].first.registrations.count %></td>
-          <td class="align_center"><%= "$ #{ob[0].first.cost}" %></td>
+          <td><%= "$ #{ob[0].first.cost}" %></td>
             <td class="align_center">
             <%= link_to(remove_item_path(ob[0].first, ob[1].first), method: :delete, data: { confirm: 'Are you sure you wish to delete this registration?' }) do %>
               <i class="material-icons">delete</i>
@@ -38,6 +31,8 @@
       <% end %>
     </tbody>
     </table>
+</br>
+</br>
 <div class="col s12">
 <h5><%= "Subtotal: $#{@tot} "%></h5>
 </div>

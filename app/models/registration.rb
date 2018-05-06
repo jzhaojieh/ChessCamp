@@ -38,6 +38,14 @@ class Registration < ApplicationRecord
     credit_card.type.nil? ? "N/A" : credit_card.type.name
   end
 
+  def self.reg_counts
+    fams = Registration.all.group(:student_id).map{|a| a.family.id}
+    r = Hash.new
+    fams.each {|b| r[b] = 0}
+    fams.each {|b| r[b] = r[b] + 1}
+    return r
+  end
+
 
   private
   def student_rating_appropriate_for_camp

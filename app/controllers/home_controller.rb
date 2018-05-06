@@ -12,28 +12,12 @@ class HomeController < ApplicationController
       @s_camps = Camp.empty.chronological.paginate(:page => params[:page]).per_page(5)
       @r_camps = Camp.where.not(id:  CampInstructor.all.map{|a| a.camp.id}).chronological.paginate(:page => params[:page]).per_page(5)
       @s_locations = Location.where(id: Camp.empty.map{|a| a.location_id}).alphabetical.paginate(:page => params[:page]).per_page(5)
-      @counts = Hash.new
-      # maybe add to model method
-      Camp.empty.map {|a| a.location.id}.each {|b| @counts[b] = 0}
-      Camp.empty.map {|a| a.location.id}.each {|b| @counts[b] = @counts[b] + 1}
-      @regs = Registration.all.group(:student_id).map{|a| a.family.id}
-      @rcounts = Hash.new
-      @regs.each {|b| @rcounts[b] = 0}
-      @regs.each {|b| @rcounts[b] = @rcounts[b] + 1}
+      @counts = Camp.empty_location
+      @rcounts = Registration.reg_counts
       @fams = @rcounts.sort_by{|k, v| v}.reverse.map {|a| Family.where(id:a[0]).first}
-      @rev_by_month = Camp.all.where(id:Registration.all.map{|a| a.camp.id}).group_by{|c| c.start_date.month}
-      @mrev = Hash.new
-      @rev_by_month.keys.each {|k| @mrev[k] = 0}
-      @rev_by_month.keys.each {|k| @mrev[k] = @rev_by_month[k].inject(0){|sum,x| sum + x.cost }}
-      @revs = []
-      @mrev.each{|k,v| @revs << [k, v]}
-      @campc = Camp.all.group(:curriculum_id).count
-      @cregs = Hash.new
-      @campc.each {|k,v| @cregs[Curriculum.where(id:k).first.name] = v}
-      @cinstrucs = CampInstructor.all.group(:instructor_id).count
-      @icnts = Hash.new 
-      @cinstrucs.each {|k,v| @icnts[Instructor.where(id:k).first.name] = v}
-      @icnts = @icnts.sort_by{|_key, value| value}.to_h
+      @revs = Camp.revenue
+      @cregs = Camp.curriculum_dist
+      @icnts = Instructor.dist
     elsif logged_in? && current_user.role?(:instructor)
       @i_camps = Instructor.where(user_id:current_user.id).first.camps.upcoming.chronological.paginate(:page => params[:page]).per_page(5)
     end
