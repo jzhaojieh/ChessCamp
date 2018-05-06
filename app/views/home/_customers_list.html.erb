@@ -6,14 +6,14 @@
 
   <table class="striped highlight">
     <thead>
-      <th>Name</th>
+      <th>Parent Name</th>
       <th>Number of Students</th>
       <th>Number of Registrations</th>
       <th class="align_center">Options</th>
     </thead>
     <% for customer in customers %>
       <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
-        <% if counts.values.sort.reverse.uniq{|a| a}.first(3).include?(counts[customer.id])%>
+        <% if counts.values.sort.reverse.uniq{|a| a}.first(2).include?(counts[customer.id])%>
           <td><%= link_to "#{customer.parent_first_name} #{customer.family_name}", customer %></td>
           <td><%= customer.students.size %></td>
           <td><%= counts[customer.id] %></td>
@@ -31,6 +31,6 @@
   </table>
   <p class="supertiny"></p>
   <br />
-  <%# will_paginate @famss, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <%# will_paginate @fams, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
 
