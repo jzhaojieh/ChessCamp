@@ -1,7 +1,7 @@
 <li>
     <% if current_user.role?(:admin)%>
-      <a v-on:click="remove_record(instructor)" class="remove">x&nbsp;&nbsp;</a>
-      <a v-on:click="show_record(instructor)">{{ instructor.last_name }},&nbsp;{{ instructor.first_name }}&nbsp;&nbsp;</a>
+      <a v-on:click="remove_record2(instructor)" class="remove">x&nbsp;&nbsp;</a>
+      <a v-on:click="show_record2(instructor)">{{ instructor.last_name }},&nbsp;{{ instructor.first_name }}&nbsp;&nbsp;</a>
     <% else %>
       {{ instructor.last_name }},&nbsp;{{ instructor.first_name }}
     <%end%>
