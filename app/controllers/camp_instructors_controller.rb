@@ -20,6 +20,7 @@ class CampInstructorsController < ApplicationController
   end
  
   def destroy
+    byebug
     # @camp_instructor = CampInstructor.find(params[:id])
     camp_id = params[:id]
     instructor_id = params[:instructor_id]
@@ -27,6 +28,7 @@ class CampInstructorsController < ApplicationController
     unless @camp_instructor.nil?
       @camp_instructor.destroy
       flash[:notice] = "Successfully removed this instructor."
+      redirect_to camp_path(Camp.where(id:camp_id).first)
     end
   end
 

@@ -3,7 +3,7 @@
 //// transfer of data between client and server
 ////////////////////////////////////////////////
 
-function run_ajax2(method, data, link, callback=function(res){instructors.get_instructors()}){
+function run_ajax(method, data, link, callback=function(res){instructors.get_instructors()}){
   $.ajax({
     method: method,
     data: data,
@@ -22,20 +22,13 @@ function run_ajax2(method, data, link, callback=function(res){instructors.get_in
 ///////////////////////////////////////////////////////
 //// A component to create a camp instructor list item
 ///////////////////////////////////////////////////////
-const router = new VueRouter({
-  routes: [
-    // dynamic segments start with a colon
-    { path: '/instructor/:id', component: instructors }
-  ]
-})
-
 Vue.component('instructor-row', {
 
   template: '#instructor-row-template',
   // template: `
   //   <li>
   //     <router-link to="/home">home</router-link>
-  //     <a v-on:click="remove_record2(instructor)" class="remove">x&nbsp;&nbsp;</a>
+  //     <a v-on:click="remove_record(instructor)" class="remove">x&nbsp;&nbsp;</a>
   //     {{ instructor.last_name }},&nbsp;{{ instructor.first_name }}
   //   </li>
   // `,
@@ -56,12 +49,12 @@ Vue.component('instructor-row', {
   },
 
   methods: {
-    remove_record2: function(instructor){
-      run_ajax2('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
+    remove_record: function(instructor){
+      run_ajax('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
     },
     show_record: function(instructor){
       window.location.href = '/instructors/'.concat(instructor['id'])
-      // run_ajax2('GET', {}, ''.concat('/instructors/',instructor['id']));
+      // run_ajax('GET', {}, ''.concat('/instructors/',instructor['id']));
     },
   }
 });
@@ -92,7 +85,7 @@ var new_form = Vue.component('new-instructor-form', {
         camp_id: this.camp_id,
         instructor_id: this.instructor_id
       }
-      run_ajax2('POST', {instructor: new_post}, '/camp_instructors.json')
+      run_ajax('POST', {instructor: new_post}, '/camp_instructors.json')
       this.switch_modal()
     }
   },
@@ -124,7 +117,7 @@ var instructors = new Vue({
     },
 
     get_instructors: function(){
-      run_ajax2('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){instructors.instructors = res});
+      run_ajax('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){instructors.instructors = res});
     }
   },
 
