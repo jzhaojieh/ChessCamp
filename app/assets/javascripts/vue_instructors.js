@@ -51,11 +51,15 @@ Vue.component('instructor-row', {
   methods: {
     remove_record2: function(instructor){
       run_ajax2('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
+      this.redirect_to2(instructor)
     },
     show_record2: function(instructor){
       window.location.href = '/instructors/'.concat(instructor['id'])
       // run_ajax2('GET', {}, ''.concat('/instructors/',instructor['id']));
     },
+    redirect_to2: function(instructor){
+      window.location.href = '/camps/'.concat(this.camp_id)
+    }
   }
 });
 
@@ -89,7 +93,7 @@ var new_form = Vue.component('new-instructor-form', {
       this.switch_modal()
     }
   },
-})
+});
 
 
 

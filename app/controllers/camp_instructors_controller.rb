@@ -29,6 +29,7 @@ class CampInstructorsController < ApplicationController
       @camp_instructor.destroy
       flash[:notice] = "Successfully removed this instructor."
     end
+    window.location.href = '/camps/'.concat(camp_id)
   end
 
   private
