@@ -1,6 +1,6 @@
 h1, h2, h3, h4, h5, h6 { font-family: Georgia, serif; color: #7e57c2; }
 body {
-  background-color: #e0e0e0;
+  background-color: #cfd8dc;
 }
 #dropdown1{
   background-color: #e0e0e0;
@@ -20,6 +20,10 @@ a:link, a:visited {
   }
   
 a:hover { text-decoration: underline; }
+ul.tabs .tab{
+  color: #9575cd;
+  background-color: #cfd8dc;
+}
 
 .tabs .tab a.active {
   color: #9575cd;
@@ -29,11 +33,11 @@ a:hover { text-decoration: underline; }
   color: #9575cd;
 }
 
-.tabs .tab a {
-  color: #bdbdbd;
+ul.tabs .tab a {
+  color: black;
 }
 
-.tabs .indicator {
+ul.tabs .indicator {
   position: absolute;
   bottom: 0;
   height: 2px;
@@ -103,7 +107,7 @@ a:hover { text-decoration: underline; }
 /********** Table ********/
 
 table.striped > tbody > tr:nth-child(odd) {
-  background-color: #ede7f6;
+  background-color: #9575cd;
 }
 
 table.striped > tbody > tr:nth-child(even) {
@@ -111,7 +115,7 @@ table.striped > tbody > tr:nth-child(even) {
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #9575cd;
+  background-color: #673ab7;
 }
 
 td.align_right {

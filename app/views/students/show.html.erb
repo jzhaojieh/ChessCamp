@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col s8">
-    <div class="card indigo lighten-2">
+    <div class="card deep-purple lighten-3">
       <div class="card-content white-text">
         <h5>Information about <%= @student.proper_name %></h5><br />
 
@@ -18,14 +18,14 @@
       </div>
     </div>
     <% if can? :edit, Student %>
-      <%= link_to(edit_student_path(@student), class: 'waves-effect waves-light btn') do %>
+      <%= link_to(edit_student_path(@student), class: 'btn waves-effect waves-light deep-purple lighten-2') do %>
           &nbsp;<%= "Edit #{@student.first_name}" %>
       <% end %>
       &nbsp;&nbsp;
     <% end %>
     
     <% if can?(:destroy, Student) && controller.respond_to?(:destroy) %>
-      <%= link_to(student_path(@student), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@student.first_name}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+      <%= link_to(student_path(@student), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@student.first_name}"}, class: 'btn waves-effect waves-light deep-purple lighten-2 btn-alert') do %>
           &nbsp;<%= "Delete #{@student.first_name}" %>
       <% end %>
     <% end %>
