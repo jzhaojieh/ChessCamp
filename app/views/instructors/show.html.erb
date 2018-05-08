@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col s5">
     <% unless @instructor.photo_url.nil? %>
-      <p><%= image_tag @instructor.photo_url %></p>
+      <p><%= image_tag(@instructor.photo_url, width: "100%") %></p>
     <% else %>
-      <p><%= image_tag "/assets/default.png" %></p>
+      <p><%= image_tag("/assets/default.png", width: "100%")%></p>
     <% end %>
     <%= render :partial => "instructor_details" %>
   </div>
