@@ -7,13 +7,15 @@
     </ul>
   </div>
     <div id="test1" class="col s12">
-      <%= render :partial => "students_list", locals: {students: @active_students, state: 'active'} %>
+      <% if @active_students.size > 0 %>
+        <%= render :partial => "students_list", locals: {students: @active_students, state: 'active'} %>
+      <% end %>
       <%# render :partial => "students_list", locals: {students: @inactive_students, state: 'inactive'} %>
       <td class="align_center">
       <% if can? :new, Student %>
         <%= link_to new_student_path() do %>
             <%# <i class="material-icons">edit</i> %>
-            <a class="btn waves-effect waves-light deep-purple lighten-2 modal-trigger" href="#modal4">Add a Student</a>
+            <i class="btn waves-effect waves-light deep-purple lighten-2 ">Add a Student</i>
         <% end %>
         &nbsp;&nbsp;&nbsp;&nbsp; 
       <% end %>

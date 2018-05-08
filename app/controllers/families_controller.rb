@@ -23,6 +23,7 @@ class FamiliesController < ApplicationController
   end
 
   def create
+    byebug
     @family = Family.new(family_params)
     @user = User.new(user_params)
     @user.role = 'parent'
@@ -63,11 +64,11 @@ class FamiliesController < ApplicationController
       if current_user.role?(:parent)
         params.require(:family).permit(:phone, :email, :password, :password_confirmation, :family_name, :parent_first_name)
       else
-        params.require(:family).permit(:family_name, :parent_first_name, :phone, :user_id, :email, :active, :username, :password, :password_confirmation)
+        params.require(:family).permit(:family_name, :parent_first_name, :user_id, :active, :username, :password, :password_confirmation, :username, :password, :password_confirmation, :role, :email, :phone)
       end
     end
 
     def user_params
-      params.require(:family).permit(:email, :active, :username, :password, :phone, :password_confirmation)
+      params.require(:family).permit(:username, :password, :password_confirmation, :role, :email, :phone, :active)
     end
 end

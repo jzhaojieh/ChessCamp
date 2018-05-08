@@ -4,6 +4,7 @@
 <%# if logged_in? && current_user.role?(:admin) %>
   <%# f.input :role, collection: User::ROLES, include_blank: true %>
 <%# end %>
-<%= f.input :email, label_html: { class: 'active' } %>
-<%= f.input :phone, label_html: { class: 'active' } %>
+<%# f.input :role, as: :hidden, input_html: { value: "instructor" } %>
+<%# f.input :email, label_html: { class: 'active' } %>
+<%# f.input :phone, label_html: { class: 'active' } %>
 <%# f.input :active %>

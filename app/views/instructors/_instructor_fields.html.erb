@@ -1,6 +1,8 @@
 <%= f.input :first_name, label_html: { class: 'active' } %>
 <%= f.input :last_name, label_html: { class: 'active' } %>
 <%= f.input :bio, label_html: { class: 'active' } %>
+<%= f.input :phone, label_html: { class: 'active' } %>
+<%= f.input :email, label_html: { class: 'active' } %>
 <%= f.file_field :photo %>
 <% if logged_in? && current_user.role?(:admin) %>
     <%= f.input :active %>

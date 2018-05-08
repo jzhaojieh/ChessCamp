@@ -8,6 +8,7 @@ class Instructor < ApplicationRecord
   belongs_to :user
   has_many :camp_instructors
   has_many :camps, through: :camp_instructors
+  attr_accessor :username, :password, :password_confirmation, :email, :phone
 
   # validations
   validates_presence_of :first_name, :last_name
@@ -29,6 +30,7 @@ class Instructor < ApplicationRecord
   delegate :email, to: :user, allow_nil: true
   delegate :phone, to: :user, allow_nil: true
   delegate :username, to: :user, allow_nil: true
+  delegate :role, to: :user, allow_nil: true
 
   # callbacks
   before_update :deactive_user_if_instructor_inactive

@@ -55,14 +55,15 @@ class InstructorsController < ApplicationController
     end
 
     def instructor_params
-      if current_user.role?(:instructor)
-        params.require(:instructor).permit(:phone, :email, :bio, :photo, :password, :password_confirmation)
-      else
-        params.require(:instructor).permit(:first_name, :last_name, :role, :bio, :user_id, :user_id, :email, :active, :username, :password, :password_confirmation, :photo, :phone, :active)
-      end
+      # if current_user.role?(:instructor)
+        # params.require(:instructor).permit(:phone, :email, :bio, :photo, :password, :password_confirmation, :username, :password, :password_confirmation, :role, :email, :phone, :active)
+      # else
+      # params.require(:instructor).permit(:first_name, :last_name, :bio, :photo, :user_id,:role, :email, :phone, :username, :password, :password_confirmation, :active)
+      params.require(:instructor).permit(:first_name, :last_name, :bio, :photo, :user_id, :active, :username, :password, :password_confirmation, :username, :password, :password_confirmation, :role, :email, :phone)
+      # end
     end
 
     def user_params
-      params.require(:instructor).permit(:email, :active, :username, :password, :role, :phone, :password_confirmation)
+      params.require(:instructor).permit(:username, :password, :password_confirmation, :role, :email, :phone, :active)
     end
 end
