@@ -34,15 +34,16 @@
     </ul>
   </div>
   <div id="test11" class="col s12">
-    <%= column_chart @revs, colors: ["#7e57c2"] %>
+    <h5> Revenue By Month </h5>
+    <%= column_chart @revs, colors: ["#7e57c2"], xtitle: "Month", ytitle: "Revenue ($)" %>
   </div>
   <div id="test12" class="col s12">
     <h5> Registrations By Curriculum </h5>
     <%= pie_chart @cregs, colors: ["#7e57c2","#b39ddb","#b388ff", "#ede7f6"] %>
   </div>
   <div id="test13" class="col s12">
-    <h5> Registrations By Curriculum </h5>
-    <%= bar_chart @icnts, colors: ["#7e57c2"]%>
+    <h5> Registrations By Instructor </h5>
+    <%= bar_chart @icnts, colors: ["#7e57c2"], xtitle: "Number of Registrations", ytitle: "Instructor"%>
   </div>
 </div>
 

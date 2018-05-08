@@ -73,7 +73,7 @@ class Camp < ApplicationRecord
     rm.keys.each {|k| mrev[k] = 0}
     rm.keys.each {|k| mrev[k] = rm[k].inject(0){|sum,x| sum + x.cost }}
     lst = []
-    mrev.each{|k,v| lst << [k, v]}
+    mrev.each{|k,v| lst << [Date::MONTHNAMES[k], v]}
     return lst
   end
 
