@@ -32,12 +32,12 @@ class Ability
                 u.id == user.id
             end
             
-            can :read, Student do |s|
+            can :show, Student do |s|
                 mys = Instructor.where(user_id:user.id).map{|a| a.camps}.flatten.map{|a| a.registrations}.flatten.map{|a| a.student.id}
                 mys.include? s.id
             end
             
-            can :read, Family do |s|
+            can :show, Family do |s|
                 mys = Instructor.where(user_id:user.id).map{|a| a.camps}.flatten.map{|a| a.registrations}.flatten.map{|a| a.student.id}
                 (mys & s.students.ids).size != 0
             end
@@ -86,7 +86,7 @@ class Ability
             # can :read, Camp
             can :read, Curriculum
             can :read, Location
-            can :read, Instructor
+            # can :read, Instructor
             # can :read, Student
             # can :index, Camp
             can :index, Curriculum

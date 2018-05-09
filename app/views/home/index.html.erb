@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col s12 center">
     <% if !logged_in? %>
-      <h2 id="headline">Chess Camps for Your Kids!<!-- Learn chess the right way. --></h2>
+      <h3 id="headline">Chess Camps for Your Kids!<!-- Learn chess the right way. --></h3></br>
+      <%= link_to camps_path do %>
+        <%= image_tag "/assets/chessboy1.png" %>
+      <% end %>
     <% elsif current_user.role?(:instructor) || current_user.role?(:parent) %>
       <h2 id="headline" class="flow-text">Welcome to A&amp;M Chess Camp !<!-- Learn chess the right way. --></h2>
     <% end %>

@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   # skip_before_action :check_login, only: [:index, :show] 
   def index
     if current_user.role?(:instructor)
-      @students = current_user.camps.map {|a| a.students}.flatten.paginate(:page => params[:page]).per_page(12)
+      @students = current_user.camps.map {|a| a.students}.alphabetical.flatten.paginate(:page => params[:page]).per_page(12)
     elsif current_user.role?(:admin)
       @students = Student.alphabetical.paginate(:page => params[:page]).per_page(12)
     end

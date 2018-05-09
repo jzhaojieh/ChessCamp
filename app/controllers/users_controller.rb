@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :check_login, only: [:new, :create] 
   authorize_resource
   def index
-    @users = User.all.paginate(page: params[:page]).per_page(15)
+    @users = User.all.ordered.paginate(page: params[:page]).per_page(15)
   end
 
   def show

@@ -1,5 +1,6 @@
 
 class RegistrationsController < ApplicationController
+  # respond_to :json, :html
   # before_action :set_registration, only: [:show, :edit, :update, :destroy]
   include AppHelpers::Cart
   before_action :check_login
@@ -65,7 +66,8 @@ class RegistrationsController < ApplicationController
     unless @registration.nil?
       @registration.destroy 
       flash[:notice] = "Successfully removed this registration."
-      redirect_to camp_path(@registration.camp)
+      # redirect_to camp_path(@registration.camp)
+      window.location.href = '/camps/'.concat(camp_id)
     end
   end
 
@@ -110,9 +112,14 @@ class RegistrationsController < ApplicationController
       if session[:cart].size > 0 
         @cart_regs.each do |c|
           reg = Registration.new(student_id:@cart_regs[0][1], camp_id:@cart_regs[0][0], credit_card_number:@ccnum, expiration_year:@eyear, expiration_month:@emonth)
-          reg.pay
-          reg.save!
-          # byebug
+          if reg.valid?
+            reg.pay
+            reg.save!
+          else
+            flash[:notice] = "Bad registration"
+            # throw(:abort)
+            # redirect_to view_cart_url
+          end
         end
       end
       @cart_subtotal = calculate_total_cart_registration_cost
